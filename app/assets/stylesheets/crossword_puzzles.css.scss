@@ -42,6 +42,9 @@ button{
 input[type='checkbox'] {
 	cursor: pointer;
 }
+.block {
+	display: block !important;
+}
 
 /* Specific Classes */
 .shadow {
@@ -64,6 +67,20 @@ input[type='checkbox'] {
 	font-family: inherit;
 	font-size: inherit;
 	font-weight: inherit;
+}
+
+tr.limited {
+	max-height: 10em;
+	overflow: hidden;
+}
+td.limited {
+	word-wrap: break-word;
+	vertical-align: top;
+	max-width: 20em;
+	word-break: break-all;
+}
+table.backed {
+	background-color: white !important;
 }
 
 /* The Document */

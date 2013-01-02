@@ -1,6 +1,6 @@
 <h1>Listing crossword_puzzles</h1>
 
-<table>
+<table class="backed">
   <tr>
     <th>Title</th>
     <th>Creator</th>
@@ -15,17 +15,17 @@
   </tr>
 
 <% @crossword_puzzles.each do |crossword_puzzle| %>
-  <tr>
-    <td><%= crossword_puzzle.title %></td>
-    <td><%= crossword_puzzle.creator %></td>
-    <td><%= crossword_puzzle.cols %></td>
-    <td><%= crossword_puzzle.rows %></td>
-    <td><%= crossword_puzzle.voids %></td>
-    <td><%= crossword_puzzle.letters %></td>
-    <td><%= crossword_puzzle.clues %></td>
-    <td><%= link_to 'Show', crossword_puzzle %></td>
-    <td><%= link_to 'Edit', edit_crossword_puzzle_path(crossword_puzzle) %></td>
-    <td><%= link_to 'Destroy', crossword_puzzle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <tr class="block limited">
+    <td class="limited"><%= crossword_puzzle.title %></td>
+    <td class="limited"><%= crossword_puzzle.creator %></td>
+    <td class="limited"><%= crossword_puzzle.cols %></td>
+    <td class="limited"><%= crossword_puzzle.rows %></td>
+    <td class="limited"><%= crossword_puzzle.voids %></td>
+    <td class="limited"><%= crossword_puzzle.letters %></td>
+    <td class="limited"><%= crossword_puzzle.clues %></td>
+    <td class="limited"><%= link_to 'Show', crossword_puzzle %></td>
+    <td class="limited"><%= link_to 'Edit', edit_crossword_puzzle_path(crossword_puzzle) %></td>
+    <td class="limited"><%= link_to 'Destroy', crossword_puzzle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
