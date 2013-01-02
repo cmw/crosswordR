@@ -1,12 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CrosswordR</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <title>Crossword Café</title>
+  <%= stylesheet_link_tag    "application", "header", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "http://code.jquery.com/ui/1.9.2/jquery-ui.js" %>
+  <%= javascript_include_tag "header" %>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<div id="crossHeader" class="shadow">
+		<div id="crossHeaderContainer" >
+			<!-- <img src="http://i.imgur.com/ZQegw.jpg" />
+			<img src="http://i.imgur.com/n2q3D.jpg" />
+			<img src="http://i.imgur.com/ZY0G7.jpg" />
+			<img src="http://i.imgur.com/XIdcI.jpg" />-->
+			
+			<%= link_to image_tag("/assets/headerIcon.png", :height => "85%"), home_index_path %>
+			<div id="headQuote">“A writer is someone who can make a riddle out of an answer.”</div>
+			<nav class="right headerNav">
+				<span class="headerSpacer right"></span>
+				<div class ="menuTab">
+					My Profile
+					<div class="downNav"></div>
+					<ul class="dropMenu">
+						<li><%= link_to "All Puzzles", crossword_puzzles_path %></li>
+					<ul>
+				</div>
+				<span class="headerSpacer right"></span>
+				<div class="menuTab">
+					Load Puzzle
+					<div class="downNav"></div>
+					<ul class="dropMenu">
+						<li>Locke
+							<div class="leftNav"></div>
+							<ul class="leftMenu">
+								<li class="pointer" onclick="loadCrossword(locke1);">Interstellar</li>
+								<li class="pointer" onclick="loadCrossword(locke2);">Rainbow</li>
+							</ul>
+						</li>
+						<li>O'Shea
+							<div class="leftNav"></div>
+							<ul class="leftMenu">
+								<li class="pointer" onclick="loadCrossword(dylan1);">Parisian</li>
+								<li class="pointer" onclick="loadCrossword(dylan2);">Hate Crate</li>
+							</ul>
+						</li>
+					</ul>
+					
+				</div>
+				<span class="headerSpacer right"></span>
+				<div class="pointer" onclick="newCrossword();">New Puzzle</div>
+				<span class="headerSpacer right"></span>
+			</nav>
+		</div>
+	</div>
 
 <%= yield %>
 
