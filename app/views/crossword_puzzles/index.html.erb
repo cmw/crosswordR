@@ -1,0 +1,35 @@
+<h1>Listing crossword_puzzles</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Creator</th>
+    <th>Cols</th>
+    <th>Rows</th>
+    <th>Voids</th>
+    <th>Letters</th>
+    <th>Clues</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @crossword_puzzles.each do |crossword_puzzle| %>
+  <tr>
+    <td><%= crossword_puzzle.title %></td>
+    <td><%= crossword_puzzle.creator %></td>
+    <td><%= crossword_puzzle.cols %></td>
+    <td><%= crossword_puzzle.rows %></td>
+    <td><%= crossword_puzzle.voids %></td>
+    <td><%= crossword_puzzle.letters %></td>
+    <td><%= crossword_puzzle.clues %></td>
+    <td><%= link_to 'Show', crossword_puzzle %></td>
+    <td><%= link_to 'Edit', edit_crossword_puzzle_path(crossword_puzzle) %></td>
+    <td><%= link_to 'Destroy', crossword_puzzle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Crossword puzzle', new_crossword_puzzle_path %>

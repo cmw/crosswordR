@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @crossword_puzzle.title %>
+</p>
+
+<p>
+  <b>Creator:</b>
+  <%= @crossword_puzzle.creator %>
+</p>
+
+<p>
+  <b>Cols:</b>
+  <%= @crossword_puzzle.cols %>
+</p>
+
+<p>
+  <b>Rows:</b>
+  <%= @crossword_puzzle.rows %>
+</p>
+
+<p>
+  <b>Voids:</b>
+  <%= @crossword_puzzle.voids %>
+</p>
+
+<p>
+  <b>Letters:</b>
+  <%= @crossword_puzzle.letters %>
+</p>
+
+<p>
+  <b>Clues:</b>
+  <%= @crossword_puzzle.clues %>
+</p>
+
+
+<%= link_to 'Edit', edit_crossword_puzzle_path(@crossword_puzzle) %> |
+<%= link_to 'Back', crossword_puzzles_path %>
