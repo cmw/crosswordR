@@ -1,6 +1,6 @@
 <h1>Listing users</h1>
 
-<table>
+<table class="backed">
   <tr>
     <th>First name</th>
     <th>Last name</th>
@@ -20,6 +20,7 @@
     <td><%= user.username %></td>
 	<td><%= user.admin %></td>
     <td><%= user.email %></td>
+	<td><%= user.crossword_puzzles_count %></td>
     <td><%= user.password %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
