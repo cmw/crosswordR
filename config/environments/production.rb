@@ -60,6 +60,9 @@ CrosswordR::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+	
+  # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
+  config.assets.precompile += %w( header.css crossword_puzzle.css.scss scaffolds.css.scss home.css.scss)
 
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
