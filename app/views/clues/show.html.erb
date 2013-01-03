@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Crossword puzzle:</b>
+  <%= @clue.crossword_puzzle_id %>
+</p>
+
+<p>
+  <b>User</b>
+  <%= @clue.user_id %>
+</p>
+
+<p>
+  <b>Cell:</b>
+  <%= @clue.cell %>
+</p>
+
+<p>
+  <b>Orientation:</b>
+  <%= @clue.orientation %>
+</p>
+
+<p>
+  <b>Clue text:</b>
+  <%= @clue.clue_text %>
+</p>
+
+
+<%= link_to 'Edit', edit_clue_path(@clue) %> |
+<%= link_to 'Back', clues_path %>

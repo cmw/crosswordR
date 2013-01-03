@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  crossword_puzzle_id: 1
+  cell: 1
+  orientation: false
+  clue_text: MyString
+
+two:
+  crossword_puzzle_id: 1
+  cell: 1
+  orientation: false
+  clue_text: MyString

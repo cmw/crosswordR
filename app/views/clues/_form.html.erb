@@ -1,0 +1,37 @@
+<%= form_for(@clue) do |f| %>
+  <% if @clue.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@clue.errors.count, "error") %> prohibited this clue from being saved:</h2>
+
+      <ul>
+      <% @clue.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :crossword_puzzle_id %><br />
+    <%= f.number_field :crossword_puzzle_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :cell %><br />
+    <%= f.number_field :cell %>
+  </div>
+  <div class="field">
+    <%= f.label :orientation %><br />
+    <%= f.check_box :orientation %>
+  </div>
+  <div class="field">
+    <%= f.label :clue_text %><br />
+    <%= f.text_field :clue_text %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

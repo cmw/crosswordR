@@ -11,18 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130103102430) do
+ActiveRecord::Schema.define(:version => 20130103181820) do
+
+  create_table "clues", :force => true do |t|
+    t.integer  "crossword_puzzle_id"
+    t.integer  "user_id"
+    t.integer  "cell"
+    t.boolean  "orientation"
+    t.string   "clue_text"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
 
   create_table "crossword_puzzles", :force => true do |t|
     t.string   "title"
     t.integer  "user_id"
     t.integer  "rows"
     t.integer  "cols"
-    t.string   "clues"
     t.string   "letters"
     t.string   "voids"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "clues_count", :default => 0
   end
 
   create_table "users", :force => true do |t|
@@ -35,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20130103102430) do
     t.datetime "updated_at",                             :null => false
     t.boolean  "admin"
     t.integer  "crossword_puzzles_count", :default => 0
+    t.integer  "clues_count",             :default => 0
   end
 
 end

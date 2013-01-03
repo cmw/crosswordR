@@ -1,4 +1,7 @@
 CrosswordR::Application.routes.draw do
+  resources :clues
+
+
   resources :users
 
 
