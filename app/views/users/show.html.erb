@@ -36,8 +36,13 @@
 </p>
 
 <p>
-  <b>Password:</b>
-  <%= @user.password %>
+  <b>Password Hash:</b>
+  <%= @user.password_hash %>
+</p>
+
+<p>
+  <b>Password Salt:</b>
+  <%= @user.password_salt %>
 </p>
 
 
