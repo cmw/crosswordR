@@ -18,7 +18,7 @@ class CrosswordPuzzlesControllerTest < ActionController::TestCase
 
   test "should create crossword_puzzle" do
     assert_difference('CrosswordPuzzle.count') do
-      post :create, crossword_puzzle: { clues: @crossword_puzzle.clues, cols: @crossword_puzzle.cols, creator: @crossword_puzzle.creator, letters: @crossword_puzzle.letters, rows: @crossword_puzzle.rows, title: @crossword_puzzle.title, voids: @crossword_puzzle.voids }
+      post :create, crossword_puzzle: { clues: @crossword_puzzle.clues, cols: @crossword_puzzle.cols, letters: @crossword_puzzle.letters, rows: @crossword_puzzle.rows, title: @crossword_puzzle.title, user_id: @crossword_puzzle.user_id, voids: @crossword_puzzle.voids }
     end
 
     assert_redirected_to crossword_puzzle_path(assigns(:crossword_puzzle))
@@ -35,7 +35,7 @@ class CrosswordPuzzlesControllerTest < ActionController::TestCase
   end
 
   test "should update crossword_puzzle" do
-    put :update, id: @crossword_puzzle, crossword_puzzle: { clues: @crossword_puzzle.clues, cols: @crossword_puzzle.cols, creator: @crossword_puzzle.creator, letters: @crossword_puzzle.letters, rows: @crossword_puzzle.rows, title: @crossword_puzzle.title, voids: @crossword_puzzle.voids }
+    put :update, id: @crossword_puzzle, crossword_puzzle: { clues: @crossword_puzzle.clues, cols: @crossword_puzzle.cols, letters: @crossword_puzzle.letters, rows: @crossword_puzzle.rows, title: @crossword_puzzle.title, user_id: @crossword_puzzle.user_id, voids: @crossword_puzzle.voids }
     assert_redirected_to crossword_puzzle_path(assigns(:crossword_puzzle))
   end
 

@@ -11,18 +11,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130102181733) do
+ActiveRecord::Schema.define(:version => 20130103084910) do
 
   create_table "crossword_puzzles", :force => true do |t|
     t.string   "title"
-    t.string   "creator"
-    t.integer  "cols"
+    t.integer  "user_id"
     t.integer  "rows"
-    t.string   "voids"
-    t.string   "letters"
+    t.integer  "cols"
     t.string   "clues"
+    t.string   "letters"
+    t.string   "voids"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "username"
+    t.string   "email"
+    t.string   "password"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.boolean  "admin"
   end
 
 end

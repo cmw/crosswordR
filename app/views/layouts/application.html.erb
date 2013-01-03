@@ -15,7 +15,7 @@
 			<img src="http://i.imgur.com/ZY0G7.jpg" />
 			<img src="http://i.imgur.com/XIdcI.jpg" />-->
 			
-			<%= link_to image_tag("/assets/headerIcon.png", :height => "85%", :alt => "Crossword Café -- Home"), home_index_path %>
+			<%= link_to image_tag("/assets/headerIcon.png", :height => "85%", :alt => "Crossword Café -- Home"), root_url %>
 			<div id="headQuote">“A writer is someone who can make a riddle out of an answer.”</div>
 			<nav class="right headerNav">
 				<span class="headerSpacer right"></span>
@@ -24,6 +24,7 @@
 					<div class="downNav"></div>
 					<ul class="dropMenu">
 						<li><%= link_to "All Puzzles", crossword_puzzles_path %></li>
+						<li><%= link_to "All Users", users_path %></li>
 					<ul>
 				</div>
 				<span class="headerSpacer right"></span>
@@ -31,20 +32,21 @@
 					Load Puzzle
 					<div class="downNav"></div>
 					<ul class="dropMenu">
-						<li>Locke
+					
+						//Leaves out non-creators
+						<% User.select('users.*, count(crossword_puzzles.id) as puzzle_count').joins(:crossword_puzzles).group('user_id').having('puzzle_count > 0').order(:last_name).each do |user| %>
+						<li class="marsupial"><%= user.last_name %>
 							<div class="leftNav"></div>
 							<ul class="leftMenu">
-								<li class="pointer" onclick="loadCrossword(locke1);">Interstellar</li>
-								<li class="pointer" onclick="loadCrossword(locke2);">Rainbow</li>
+							
+								<% user.crossword_puzzles.each do |crossword_puzzle| %>
+									<li class="pointer" onclick="loadCrossword(dylan1);"><%= crossword_puzzle.title.split(" ")[0][0,13] %></li>
+								<% end %>
+								
 							</ul>
 						</li>
-						<li>O'Shea
-							<div class="leftNav"></div>
-							<ul class="leftMenu">
-								<li class="pointer" onclick="loadCrossword(dylan1);">Parisian</li>
-								<li class="pointer" onclick="loadCrossword(dylan2);">Hate Crate</li>
-							</ul>
-						</li>
+						<% end %>
+						
 					</ul>
 					
 				</div>

@@ -2,18 +2,18 @@
 
 one:
   title: MyString
-  creator: MyString
-  cols: 1
+  user_id: 1
   rows: 1
-  voids: MyString
-  letters: MyString
+  cols: 1
   clues: MyString
+  letters: MyString
+  voids: MyString
 
 two:
   title: MyString
-  creator: MyString
-  cols: 1
+  user_id: 1
   rows: 1
-  voids: MyString
-  letters: MyString
+  cols: 1
   clues: MyString
+  letters: MyString
+  voids: MyString
