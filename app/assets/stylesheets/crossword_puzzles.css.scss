@@ -69,10 +69,11 @@ input[type='checkbox'] {
 	font-weight: inherit;
 }
 
-tr.limited {
+tr.limited, th.limited {
 	max-height: 10em;
 	overflow: hidden;
 }
+
 td.limited {
 	word-wrap: break-word;
 	vertical-align: top;
