@@ -169,6 +169,17 @@ body {
 	width: 58em;
 	margin: auto;
 }
+.top-notice {
+	background: whitesmoke;
+    position: absolute;
+    top: 0.5em;
+    margin: 0;
+   	border-radius: 1em;
+    padding: 1.5em;
+    font-size: larger;
+    z-index: 100000;
+    left: 40%;
+}
 #topPuzzleBox {
 	width: inherit;
 	height: 30em;
