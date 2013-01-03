@@ -563,3 +563,20 @@ input.void {
 	height: 10em;
 	bottom: 0;
 }
+
+/* 
+Signup Form
+*/
+#signup-form-container {
+	background: rgba(255,255,255,0.7);
+	padding: 0.5em 1em;
+	text-align: center;
+	margin-top: 1em;
+	width: 15em;
+	border-radius: 1em;
+	position: absolute;
+	left: 38%;
+}
+#signup-form-container input {
+	text-align: center;
+}
