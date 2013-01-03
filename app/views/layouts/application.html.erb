@@ -32,21 +32,34 @@
 					Load Puzzle
 					<div class="downNav"></div>
 					<ul class="dropMenu">
-					
-						<!-- Leaves out non-creators -->
-						<% User.where('crossword_puzzles_count > ?', 0).order(:last_name).each do |user| %>
-						<li class="marsupial"><%= user.last_name %>
+						<li>Locke
+							<div class="leftNav"></div>
+							<ul class="leftMenu">
+								<li class="pointer" onclick="loadCrossword(locke1);">Interstellar</li>
+								<li class="pointer" onclick="loadCrossword(locke2);">Rainbow</li>
+							</ul>
+						</li>
+						<li>O'Shea
+						<!-- Leaves out non-creators
+						 %User.where('crossword_puzzles_count > ?', 0).order(:last_name).each do |user| %
+						<li> %= user.last_name %
 							<div class="leftNav"></div>
 							<ul class="leftMenu">
 							
-								<% user.crossword_puzzles.each do |crossword_puzzle| %>
-									<li class="pointer" onclick="loadCrossword(dylan1);"><%= crossword_puzzle.title.split(" ")[0][0,13] %></li>
-								<% end %>
+								% user.crossword_puzzles.each do |crossword_puzzle| %
+									<li class="pointer" onclick="loadCrossword(dylan1);"> %= crossword_puzzle.title.split(" ")[0][0,13] % </li>
+								% end %
 								
 							</ul>
 						</li>
-						<% end %>
-						
+						% end %
+						-->
+							<div class="leftNav"></div>
+							<ul class="leftMenu">
+								<li class="pointer" onclick="loadCrossword(dylan1);">Parisian</li>
+								<li class="pointer" onclick="loadCrossword(dylan2);">Hate Crate</li>
+							</ul>
+ 						</li>
 					</ul>
 					
 				</div>
