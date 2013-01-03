@@ -33,8 +33,8 @@
 					<div class="downNav"></div>
 					<ul class="dropMenu">
 					
-						//Leaves out non-creators
-						<% User.select('users.*, count(crossword_puzzles.id) as puzzle_count').joins(:crossword_puzzles).group('user_id').having('puzzle_count > 0').order(:last_name).each do |user| %>
+						<!-- Leaves out non-creators -->
+						<% User.where('crossword_puzzles_count > ?', 0).order(:last_name).each do |user| %>
 						<li class="marsupial"><%= user.last_name %>
 							<div class="leftNav"></div>
 							<ul class="leftMenu">
