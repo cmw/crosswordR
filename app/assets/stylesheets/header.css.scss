@@ -6,11 +6,12 @@
 }
 .downNav {
 	background: url(/assets/downNav.png) no-repeat right top;
-	width: 2em;
+	width: 1.1em !important;
 	position: absolute !important;
 	height: 0.5em !important;
 	right: 40%;
 	top: 3.6em;
+	padding: 0 !important;
 }
 .leftNav {
 	background: url(/assets/leftNav.png) no-repeat right top;
