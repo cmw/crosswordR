@@ -10,7 +10,16 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email
 
-  attr_accessible :admin, :clues_count, :crossword_puzzles_count, :email, :first_name, :last_name, :password, :password_confirmation, :password_hash, :password_salt, :username
+  attr_accessible :admin, :email, :first_name, :last_name, :password, :password_confirmation, :username
+
+  def self.authenticate(email, password)
+  	user = find_by_email(email)
+  	if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
+  	  user
+  	else
+  	  nil
+  	end
+  end
 
   def encrypt_password
   	if password.present?
@@ -18,4 +27,6 @@ class User < ActiveRecord::Base
 	  self.password_hash = BCrypt::Engine.hash_secret(password, password_salt) 		
   	end
   end
+  
+  
 end
