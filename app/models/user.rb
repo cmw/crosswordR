@@ -7,10 +7,9 @@ class User < ActiveRecord::Base
   
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
-  validates_presence_of :email
-  validates_uniqueness_of :email
-  validates_presence_of :username
-  validates_uniqueness_of :username
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, :presence => true, :uniqueness => true, :length => { :maximum => 25 }, :format => { with: VALID_EMAIL_REGEX } 
+  validates :username, :presence => true, :uniqueness => true, :length => { :maximum => 15 }
 
   attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :username
 

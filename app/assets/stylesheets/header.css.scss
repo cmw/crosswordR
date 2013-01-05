@@ -59,8 +59,11 @@ nav.headerNav div {
 	position: relative;
 	float: inherit;
 	padding: 0 1em;
-	
 }
+ nav.headerNav a {
+ 	overflow: auto;
+ 	float: inherit;
+ }
 nav.headerNav div:hover {
 	background-color: rgba(255,255,255,0.1);
 }

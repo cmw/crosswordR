@@ -11,9 +11,7 @@
 			<th>Admin</th>
 			<th>Email</th>
 			<th>Puzzle Count</th>
-		<th>Clue Count</th>
-			<th>Password Hash</th>
-			<th>Password Salt</th>
+			<th>Clue Count</th>
 			<th></th>
 			<th></th>
 			<th></th>
@@ -24,12 +22,10 @@
 			<td><%= user.first_name %></td>
 			<td><%= user.last_name %></td>
 			<td><%= user.username %></td>
-		<td><%= user.admin %></td>
+			<td><%= user.admin %></td>
 			<td><%= user.email %></td>
-		<td><%= user.crossword_puzzles_count %></td>
-		<td><%= user.clues_count %></td>
-			<td><%= user.password_hash %></td>
-			<td><%= user.password_salt %></td>
+			<td><%= user.crossword_puzzles_count %></td>
+			<td><%= user.clues_count %></td>
 			<td><%= link_to 'Show', user %></td>
 			<td><%= link_to 'Edit', edit_user_path(user) %></td>
 			<td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
