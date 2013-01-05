@@ -1,6 +1,14 @@
-<h1>Editing clue</h1>
+<% if current_user && current_user.admin %> 
 
-<%= render 'form' %>
+	<h1>Editing clue</h1>
+	
+	<%= render 'form' %>
+	
+	<%= link_to 'Show', @clue %> |
+	<%= link_to 'Back', clues_path %>
 
-<%= link_to 'Show', @clue %> |
-<%= link_to 'Back', clues_path %>
+<% else %>
+
+	<%= render :partial => "partial/admin_only" %>
+
+<% end %>

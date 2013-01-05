@@ -38,8 +38,7 @@
 	
 	<%= link_to 'New Crossword puzzle', new_crossword_puzzle_path %>
 <% else %>
-	<div id="signup-login-container" class="shadow">
-		<%= image_tag "/assets/admin_only.png", :alt => "Admin only", :id => "admin-only" %>
-		You are not authorized to access this information.
-	</div>
+
+	<%= render :partial => "partial/admin_only" %>
+	
 <% end %>

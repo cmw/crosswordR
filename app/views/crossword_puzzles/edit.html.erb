@@ -1,6 +1,14 @@
-<h1>Editing crossword_puzzle</h1>
+<% if current_user && current_user.admin %> 
+	
+	<h1>Editing crossword_puzzle</h1>
+	
+	<%= render 'form' %>
+	
+	<%= link_to 'Show', @crossword_puzzle %> |
+	<%= link_to 'Back', crossword_puzzles_path %>
 
-<%= render 'form' %>
+<% else %>
 
-<%= link_to 'Show', @crossword_puzzle %> |
-<%= link_to 'Back', crossword_puzzles_path %>
+	<%= render :partial => "partial/admin_only" %>
+
+<% end %>
