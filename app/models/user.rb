@@ -7,9 +7,20 @@ class User < ActiveRecord::Base
   
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
+  
+  MAX_EMAIL_LENGTH = 25
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, :presence => true, :uniqueness => true, :length => { :maximum => 25 }, :format => { with: VALID_EMAIL_REGEX } 
-  validates :username, :presence => true, :uniqueness => true, :length => { :maximum => 15 }
+  validates :email,
+  	:presence => true,
+  	:uniqueness => true,
+  	:length => { :maximum => MAX_EMAIL_LENGTH, :message => "That's just too long. Your email shouldn't be above #{MAX_EMAIL_LENGTH} characters" },
+   	:format => { with: VALID_EMAIL_REGEX, :message => ": Only real email addresses, please" } 
+  
+  MAX_USERNAME_LENGTH = 12
+  validates :username,
+  	:presence => true,
+  	:uniqueness => true,
+  	:length => { :maximum => MAX_USERNAME_LENGTH, :message => ": Please keep your username under #{MAX_USERNAME_LENGTH} characters"}
 
   attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :username
 

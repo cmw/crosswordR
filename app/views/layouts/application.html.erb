@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Crossword Café</title>
+  <title><%= title %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
 	<%= javascript_include_tag :application %>
   <%= javascript_include_tag "http://code.jquery.com/ui/1.9.2/jquery-ui.js" %>
   <%= csrf_meta_tags %>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="keywords" content="<%= meta_keywords %>" />
+	<meta name="description" content="<%= meta_description %>" />
 </head>
 <body>
 	<div id="crossHeader" class="shadow">
