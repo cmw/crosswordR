@@ -1,0 +1,33 @@
+<%= form_for(@crossword_solution) do |f| %>
+  <% if @crossword_solution.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@crossword_solution.errors.count, "error") %> prohibited this crossword_solution from being saved:</h2>
+
+      <ul>
+      <% @crossword_solution.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :crossword_puzzle_id %><br />
+    <%= f.number_field :crossword_puzzle_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :solution_letters %><br />
+    <%= f.text_area :solution_letters %>
+  </div>
+  <div class="field">
+    <%= f.label :solution_complete %><br />
+    <%= f.check_box :solution_complete %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

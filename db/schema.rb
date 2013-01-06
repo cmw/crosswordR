@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130105005315) do
+ActiveRecord::Schema.define(:version => 20130106194119) do
 
   create_table "clues", :force => true do |t|
     t.integer  "crossword_puzzle_id"
@@ -30,9 +30,19 @@ ActiveRecord::Schema.define(:version => 20130105005315) do
     t.integer  "cols"
     t.string   "letters"
     t.string   "voids"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
-    t.integer  "clues_count", :default => 0
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.integer  "clues_count",               :default => 0
+    t.integer  "crossword_solutions_count", :default => 0
+  end
+
+  create_table "crossword_solutions", :force => true do |t|
+    t.integer  "crossword_puzzle_id"
+    t.integer  "user_id"
+    t.text     "solution_letters"
+    t.boolean  "solution_complete",   :default => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -40,13 +50,14 @@ ActiveRecord::Schema.define(:version => 20130105005315) do
     t.string   "last_name"
     t.string   "username"
     t.string   "email"
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
-    t.boolean  "admin",                   :default => false
-    t.integer  "crossword_puzzles_count", :default => 0
-    t.integer  "clues_count",             :default => 0
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.boolean  "admin",                     :default => false
+    t.integer  "crossword_puzzles_count",   :default => 0
+    t.integer  "clues_count",               :default => 0
     t.string   "password_hash"
     t.string   "password_salt"
+    t.integer  "crossword_solutions_count", :default => 0
   end
 
 end

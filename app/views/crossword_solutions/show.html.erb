@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Crossword puzzle:</b>
+  <%= @crossword_solution.crossword_puzzle_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @crossword_solution.user_id %>
+</p>
+
+<p>
+  <b>Solution letters:</b>
+  <%= @crossword_solution.solution_letters %>
+</p>
+
+<p>
+  <b>Solution complete:</b>
+  <%= @crossword_solution.solution_complete %>
+</p>
+
+
+<%= link_to 'Edit', edit_crossword_solution_path(@crossword_solution) %> |
+<%= link_to 'Back', crossword_solutions_path %>
