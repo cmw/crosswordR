@@ -22,32 +22,43 @@
 			<%= link_to image_tag("/assets/headerIcon.png", :height => "85%", :alt => "Crossword Café -- Home"), root_url %>
 			<div id="headQuote">“A writer is someone who can make a riddle out of an answer.”</div>
 			<nav class="right headerNav">
+				<% if current_user %>
 				<span class="headerSpacer right"></span>
 				<div class ="menuTab">
-					My Profile
-					<div class="downNav"></div>
-					<ul class="dropMenu">
+					<% if current_user.first_name || current_user.last_name %>
+						<%= current_user.first_name if current_user.first_name %> <%= current_user.last_name if current_user.last_name %>
+					<% else %>
+						<%= current_user.username %>
+					<% end %>
 					
-						<% if current_user && current_user.admin%>
-						<li> Admin
-								<div class="leftNav"></div>
-								<ul class="leftMenu">
-										<%= link_to "<li>All Users</li>".html_safe, users_path %>
-										<%= link_to "<li>All Puzzles</li>".html_safe, crossword_puzzles_path %>
-										<%= link_to "<li>All Solutions</li>".html_safe, crossword_solutions_path %>
-										<%= link_to "<li>All Clues</li>".html_safe, clues_path %>
-								</ul>
-						</li>
-						<% end %>
-						<% if current_user%>
-						<%= link_to "<li>Profile</li>".html_safe, clues_path %>
-						<%= link_to "<li>Log Out</li>".html_safe, log_out_path %>
-						<% else %>
-						<%= link_to "<li>Log In</li>".html_safe, log_in_path %>
-						<%= link_to "<li>Sign Up</li>".html_safe, sign_up_path %>
-						<% end %> 
+					<div class="downNav"></div>
+						<ul class="dropMenu">
+					
+							<% if current_user.admin%>
+							<li> Admin
+									<div class="leftNav"></div>
+									<ul class="leftMenu">
+											<%= link_to "<li>All Users</li>".html_safe, users_path %>
+											<%= link_to "<li>All Puzzles</li>".html_safe, crossword_puzzles_path %>
+											<%= link_to "<li>All Solutions</li>".html_safe, crossword_solutions_path %>
+											<%= link_to "<li>All Clues</li>".html_safe, clues_path %>
+									</ul>
+							</li>
+							<% end %>
+						<%= link_to "<li>Profile</li>".html_safe, users_path %>
+						<%= link_to "<li>Log Out</li>".html_safe, log_out_path %> 
 					<ul>
 				</div>
+				<% else %>
+					<div class ="menuTab promote">
+						<%= link_to "Sign Up!".html_safe, sign_up_path %>
+					</div>
+					<span class="headerSpacer right"></span>
+					<div class ="menuTab">
+						<%= link_to "Log In".html_safe, log_in_path %>
+					</div>
+				<% end %>
+				
 				<span class="headerSpacer right"></span>
 				<div class="menuTab">
 					Load Puzzle

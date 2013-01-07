@@ -11,18 +11,274 @@
 		<%= link_to 'Back', crossword_puzzles_path %>
 		
 	<% else %>
+		<script type="text/javascript">
+	
+		/*
+		Document load function that sets up the puzzle cells and prepares the dblclick
+		event listener to allow the users to change cells to and from void
+		*/
+		$(document).ready(function(){
+			for (var i = 0; i<numRows; i++){
+				$("#cword").append(row);
+			}
+			for (var i = 0; i<numCols; i++){
+				$(".row").append(cell);
+			}
+			//Initialize the cells, cellNumbers, and row x col tag
+			$cells = $('.cell');
+			$cellNums = $('.cellNum');
+			
+			
+			$(".cell").on('dblclick', function() {
+				$(this).val('');
+				toggleVoid($(this));
+			});
+			
+			//When the user hovers or focuses a cell, its clues are dynamically displayed and it is highlighted
+			$cells.on('mouseenter focusin',
+				function(){
+					$('.cellContainer').removeClass('hoverCell');
+					if(!isVoid($(this))){
+						$(this).parent().addClass('hoverCell');
+						if($('#dishStain').css('display')!='none' || $('#dishStain').css('opacity')>0){
+							$('#dishStain').stop();
+							$('#dishStain').fadeOut(400);	
+						}
+					} else {
+						if($('#dishStain').css('display')=='none' || $('#dishStain').css('opacity')< 1){
+							$('#dishStain').stop();
+							$('#dish').fadeIn(1000);	
+						}
+					}
+					if (getClueLeft($(this))){
+						if($('.curA').is(":hidden")){
+							$('.curA').show();
+						}
+						$('#curClueA').text(getClueLeft($(this))['Number']);
+						$('#acrossP').html(getClueLeft($(this))['Clue']);
+					}
+					else {
+						if($('.curA').is(":visible")){
+							$('.curA').hide();
+						}
+					}
+					if (getClueAbove($(this))){
+						if($('.curD').is(":hidden")){
+							$('.curD').show();
+						}
+						$('#curClueD').text(getClueAbove($(this))['Number']);
+						$('#downP').html(getClueAbove($(this))['Clue']);
+					}
+					else {
+						if($('.curD').is(":visible")){
+							$('.curD').hide();
+						}
+					}
+				});					
+			$cells.on('focusout mouseleave',
+				function(){
+					$(this).parent().removeClass('hoverCell');
+				}
+			);
+			
+			//When a cell is focused, highlights the contents of the cell for easy changes
+			//Oddly written timeout because otherwise the keypress focuses don't properly highlight
+			$cells.on('focus', function(){
+				var save_this = $(this);
+				window.setTimeout (function(){save_this.select();},1);
+			});
+			
+			//Prevents non-digit values from being typed in cell number textbox
+			$('.numbersOnly').keyup(function () { 
+				this.value = this.value.replace(/[^0-9\.]/g,'');
+			});
+			
+			//Quick cell navigation key binds
+			$cells.on('keydown',function(event){
+				switch (event.which) {
+					case 13:
+						$cellBelow(this).select();
+						break;
+					case 37:
+						$cellLeft(this).select();
+						break;
+					case 38:
+						$cellAbove(this).select();
+						break;
+					case 39:
+						$cellRight(this).select();
+						break;
+					case 40:
+						$cellBelow(this).select();
+						break;
+						
+				}
+			});
+			$('#wordsToUseBar input[type=text]').on('keydown',function(event){
+				switch (event.which) {
+					case 13:
+						var contents = $(this).val();
+						if(contents){
+							var wordToAdd = $('<li class="weakHidden"><input type="checkbox" /><span>' + contents + '</span></li>');
+							wordToAdd.appendTo('#wordsToUse');
+							$('#wordsToUse > li.weakHidden').fadeIn(200,function(){
+								$(this).removeClass('weakHidden');
+							});
+							$(this).val('');
+						}
+						break;
+				}	
+			});
+
+			//Advanced tools toggle on pen-click
+			$('#advHeader, #advBracket, #pen').on('click',function(){
+				toggleAdvanced();
+			});
+			
+			//Warning alert when a user un-checks Skip Singles
+			$('#skipSingles').on('change',function() {
+				if(!$(this).prop("checked")){
+					var changeSkipBox = confirm('Be careful. Most crossword puzzles do not contain one-letter words.\n\nThose that do generally don\'t number them. Although we provide the option, this box should probably remain checked.');
+					if(!changeSkipBox){
+						$(this).prop("checked", !$(this).prop("checked"));
+					}
+				}
+			});
+			//Allows user to disable and enable the default caps-lock in cells
+			$('#allCaps').on('change',function() {
+				if($(this).prop("checked")){
+					$cells.css('text-transform', 'uppercase');
+				}
+				else {
+					$cells.css('text-transform', 'none');
+				}
+			});
+			$('#wordsUseContainer').on('change','input[type=checkbox]',function(){
+				if( $.inArray(this,$('#wordsToUse input')) >=0 ){
+					$(this).closest('li').fadeOut(200,function(){
+						$(this).appendTo($('#wordsUsed')).fadeIn(200);
+					});
+				} else if( $.inArray(this,$('#wordsUsed input')) >=0 ){
+					$(this).closest('li').fadeOut(200,function(){
+						$(this).appendTo($('#wordsToUse')).fadeIn(200);
+					});
+				} else {
+					console.log(0);
+				}
+			});
+			$('#wordsToUse, #wordsUsed').on('dblclick','li',function(){
+				$(this).fadeOut(200,function(){
+					$(this).remove();
+				});
+			});
+			updateStats();
+			
+			$('.draggable').draggable({cancel:".notDraggable"});
+			
+			
+			$('#titleEdit').on('focusout', function(){
+				if(!$(this).text()){
+					$(this).text("Click to change title");
+				}
+			});
+		});
+	</script>
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	<div id='puzzleBox'>
+		<div id="topPuzzleBox">
+			<div id="leftControls" class="left">
+				<h5 id="advHeader" class="pointer">Advanced</h5>
+				<img id="advBracket" class="pointer" src="/assets/advBracket.png" width="65%" height="24em" />
+				<img id="pen" class="pointer" src="/assets/fountainPen.png" height="75%" />
+				<div id="advControls" class="hidden">
+					<button value="Clear Voids" id="clearVoids" onclick="clearVoids(); clearNumbers();">Clear Voids</button>
+					<button value="Void All" id="voidAll" onclick="makeVoid($cells);">Void All</button>
+					<div id="autoMirrorContainer" class="puzControlCheckContainer">
+						<input type="checkbox" id="autoMirror" class="puzControlCheck" checked />&nbsp;&nbsp;<span>Auto-Mirror</span>
+					</div>
+					<hr />
+					<button value="Clear Letters" id="clearLetters" onclick="clearLetters();">Clear Letters</button>
+					<div id="allCapsContainer" class="puzControlCheckContainer">
+						<input type="checkbox" id="allCaps" class="puzControlCheck" checked />&nbsp;&nbsp;<span>All &nbsp;&nbsp;Caps?</span>
+					</div>
+					<hr />
+					<button value="Clear Clues" id="clearClues" onclick="clearClues();">Clear Clues</button>
+					<hr />
+					<button value="Re-number Cells" id="renumber" onclick="clearNumbers(); numberCells();"/>Re-number</button>
+					<div id="skipSingleContainer" class="puzControlCheckContainer">
+						<input type="checkbox" id="skipSingles" class="puzControlCheck" checked />&nbsp;&nbsp;<span>Skip &nbsp;&nbsp;singles?</span>
+					</div>
+					<hr />
+					<h6>Puzzle Stats:</h6>
+					<span id="stats">
+						Dimensions:<span id="rowDim">?</span><span>&nbsp;x&nbsp;</span><span id="colDim">?</span><br />
+						Cells -- White: <span id="whiteCellCount">?</span> Black: <span id="blackCellCount"></span>
+					</span>
+				</div>
+			</div>
+			<div id="cwordContainer" class="container left">
+				<div id="titleBar" class="shadow">
+					<span contentEditable="true" id ="titleEdit" class="editable cwordTitle">Click to change title</span>
+				</div>
+				<div id='cword' class="shadow"></div>
+				<div id="creatorCredit" class="shadow">
+					<span class="cwordCreator"><%= current_user.first_name %> <%= current_user.last_name %></span>
+				</div>
+			</div>
+			<div id="rightControls" class="left">
+				<div id="currentClue">
+					<img id="dishStain" src="/assets/dishStain.png" height="80%" >
+					<div id="clueHolder">
+						<h6 class="curA"><span id="curClueA">?</span>-Across</h6>
+						<p class="clueP curA" id="acrossP">???</p>
+						<h6 class="curD"><span id="curClueD">?</span>-Down</h6>
+						<p class="clueP curD" id="downP">???</p>
+					</div>
+				</div>
+				<div id="clueForm" class="shadow">
+					<h5>Add Clues</h5>
+					<textarea id ="clueInput" placeholder="Clue" cols="35"></textarea>
+					<hr />
+					<div id="clueCellID">
+						<span id="clueCellIDtitle">Cell #</span>
+						<input type="text" maxlength="2" id="clueCell" class="numbersOnly"/>
+						<div class="onoffswitch">
+						<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="acrossDownAddClue" checked>
+							<label class="onoffswitch-label" for="acrossDownAddClue">
+								<div class="onoffswitch-inner">
+									<div class="onoffswitch-active">Across</div>
+									<div class="onoffswitch-inactive">Down</div>
+								</div>
+								<div class="onoffswitch-switch"></div>
+							</label>
+						</div>
+						<button id="clueButton" value="Add Clue" onclick="addClue(getClueText(),getClueCellNumber(),getClueOrientation()); $('#clueInput').val('');$('#clueCell').val('');" >Add Clue</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="botPuzzleBox" class="shadow">
+			<h5>Puzzle Data (comma-separated)</h5>
+			<textarea id="cwordInputOutput" rows = "3" cols="100" placeholder="Input or output data about this crossword"></textarea>
+			<button class='inputOutputButton' value="Input Voids" id="inputVoids" onclick=" inputVoids($('#cwordInputOutput').val());">Input Voids</button>
+			<button class='inputOutputButton' value="Output Voids" id="outputVoids" onclick="$('#cwordInputOutput').val('['+outputVoids().join(',')+']');">Output Voids</button>
+			<button class='inputOutputButton' value="Input Letters" id="inputLetters" onclick="inputLetters($('#cwordInputOutput').val());">Input Letters</button>
+			<button class='inputOutputButton' value="Output Letters" id="outputLetters" onclick="$('#cwordInputOutput').val('['+outputLetters().join(',')+']');">Output Letters</button>
+			<button class='inputOutputButton' value="Input Clues" id="inputClues" onclick="inputClues($('#cwordInputOutput').val());return false;">Input Clues</button>
+			<button class='inputOutputButton' value="Output Clues" id="outputClues" onclick="$('#cwordInputOutput').val(outputClues());">Output Clues</button>
+			<br />
+		</div>
+	</div>
+	<!--<div id="notes"></div>-->
+	<div id="wordsToUseBar" class="draggable shadow">
+		<input type="text" class="notDraggable" placeholder="Words to Use" maxlength="25" size="16"/>
+		<div id="wordsUseContainer" class="notDraggable">
+			<ul id="wordsToUse">
+			</ul>
+			<ul id="wordsUsed">
+			</ul>
+		</div>
+	</div>		
 		
 		
 		
@@ -32,7 +288,17 @@
 	
 <% else %>
 	<div id="signup-login-container" class="shadow">
-		You must make an account and log in to begin creating your own puzzles
+		<p>You need an account before you can start making puzzles!</p>
+		<p>
+			<%= link_to "<div class='signUpButton shadow'>Sign Up!</div>".html_safe, sign_up_path %>
+		</p>
+		<p>(Don't worry, it's 100% free)</p>
+		<br />
+		
+		<div class="orLogIn">
+			Have an account? Just <%= link_to "<u>Log In</u>".html_safe, log_in_path %>!
+			
+		</div>
 	</div>
 <% end %>
 

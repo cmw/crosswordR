@@ -104,6 +104,9 @@ nav.headerNav div ul li{
 	line-height: 2em;
 	font-size: 11px;
 }
+nav.headerNav div.promote {
+	background-color: rgba(255,255,255,0.2);
+}
 nav.headerNav div ul.dropMenu > li:last-child{
 	border-bottom: 0;
 }
