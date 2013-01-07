@@ -3,5 +3,5 @@ class CrosswordPuzzle < ActiveRecord::Base
   has_many :clues
   has_many :crossword_solutions
 
-  attr_accessible :clues_count, :cols, :letters, :rows, :title, :user_id, :voids
+  attr_accessible :clues_count, :cols, :letters, :published, :rows, :title, :user_id, :voids
 end
