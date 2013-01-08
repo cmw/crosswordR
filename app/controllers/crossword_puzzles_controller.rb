@@ -41,12 +41,18 @@ class CrosswordPuzzlesController < ApplicationController
   # POST /crossword_puzzles.json
   def create
     @crossword_puzzle = CrosswordPuzzle.new(params[:crossword_puzzle])
+    if !@crossword_puzzle.user
     	@crossword_puzzle.user = current_user
+    end
 
     respond_to do |format|
       if @crossword_puzzle.save
-        format.html { redirect_to @crossword_puzzle, notice: 'Crossword puzzle was successfully created.' }
-        format.json { render json: @crossword_puzzle, status: :created, location: @crossword_puzzle }
+      	if current_user.admin
+					format.html { redirect_to @crossword_puzzle, notice: 'Crossword puzzle was successfully created.' }
+      	else
+					format.html{ redirect_to edit_crossword_puzzle_path(@crossword_puzzle), :notice => "Puzzle created!" }
+      	end
+				format.json { render json: @crossword_puzzle, status: :created, location: @crossword_puzzle }
       else
         format.html { render action: "new" }
         format.json { render json: @crossword_puzzle.errors, status: :unprocessable_entity }
