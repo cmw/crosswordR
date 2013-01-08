@@ -5,8 +5,9 @@
 	
 	<table>
 		<tr>
+			<th>ID</th>
 			<th>Crossword puzzle</th>
-		<th>User</th>
+			<th>User</th>
 			<th>Cell</th>
 			<th>Orientation</th>
 			<th>Clue text</th>
@@ -17,6 +18,7 @@
 	
 	<% @clues.each do |clue| %>
 		<tr>
+			<td><%= clue.id %></td>
 			<td><%= clue.crossword_puzzle_id %></td>
 			<td><%= clue.user_id %></td>
 			<td><%= clue.cell %></td>

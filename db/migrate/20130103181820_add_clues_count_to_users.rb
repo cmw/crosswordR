@@ -5,7 +5,7 @@ class AddCluesCountToUsers < ActiveRecord::Migration
     User.reset_column_information  
     User.find_each do |p|  
       User.reset_counters p.id, :clues
-	  User.reset_counters p.id, :crossword_puzzles
+	  	User.reset_counters p.id, :crossword_puzzles
     end  
   end
   

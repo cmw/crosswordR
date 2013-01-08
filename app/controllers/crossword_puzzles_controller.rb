@@ -41,7 +41,7 @@ class CrosswordPuzzlesController < ApplicationController
   # POST /crossword_puzzles.json
   def create
     @crossword_puzzle = CrosswordPuzzle.new(params[:crossword_puzzle])
-    if !@crossword_puzzle.user
+    if !@crossword_puzzle.user && current_user
     	@crossword_puzzle.user = current_user
     end
 

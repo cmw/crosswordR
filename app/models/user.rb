@@ -34,6 +34,19 @@ class User < ActiveRecord::Base
   	  nil
   	end
   end
+  
+  def has_published
+  	if self.crossword_puzzles_count < 1
+  		return false
+  	else 
+  		self.crossword_puzzles.all.each do |a_puzzle|
+  			if a_puzzle.published
+					return true
+  			end
+  		end
+  	end
+  	return false
+  end
 
   def encrypt_password
   	if password.present?

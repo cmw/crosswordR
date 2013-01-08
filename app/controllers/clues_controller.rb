@@ -41,6 +41,9 @@ class CluesController < ApplicationController
   # POST /clues.json
   def create
     @clue = Clue.new(params[:clue])
+		if !@clue.user && current_user
+    	@clue.user = current_user
+    end
 
     respond_to do |format|
       if @clue.save
