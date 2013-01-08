@@ -247,6 +247,7 @@ function toggleVoid($cell){
 		makeVoid($cell);
 	}
 	updateWhiteBlack();
+	numberCells();
 }
 
 // Helper function to remove correctness from a cell
@@ -282,6 +283,7 @@ function isLoneCell(cellIndex){
 
 //Function to automatically number the cells of a blank puzzle
 function numberCells(){
+	clearNumbers();
 	cellNumberingCounter = 1;
 	for(var i = 0; i<$cells.length; i++){
 		$cell = $($cells[i]);

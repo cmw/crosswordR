@@ -42,7 +42,8 @@
 	<% else %>
 
 		<script type="text/javascript">
-		
+		numRows = <%= @crossword_puzzle.rows %>;
+		numCols = <%= @crossword_puzzle.cols %>;
 		var loadedLetters = [];
 		var loadedVoids = [];
 		var letterVoidString = '<%= @crossword_puzzle.letters %>';
@@ -186,7 +187,7 @@
 				</div>
 				<div id='cword' class="shadow"></div>
 				<div id="creatorCredit" class="shadow">
-					<span class="cwordCreator">By <%= @crossword_puzzle.user.username %></span></span>
+					<span class="cwordCreator">By <%= name = @crossword_puzzle.user ? @crossword_puzzle.user.username : "[deleted]" %></span></span>
 				</div>
 			</div>
 			<div id="rightControls" class="left">
