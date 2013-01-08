@@ -289,7 +289,7 @@ function numberCells(){
 		$cell = $($cells[i]);
 		$cellNum = $($cellNums[i]);
 		
-		if(!$cell.hasClass('void') && (!isLoneCell(i)||(!$('#skipSingles').attr('checked')))){
+		if(!$cell.hasClass('void') && (!isLoneCell(i) || ((($('#skipSingles').length > 0) && !$('#skipSingles').attr('checked'))))){
 			if(isTopRowCell(i)){
 				addNumber($cell,$cellNum);
 			}
