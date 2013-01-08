@@ -1,50 +1,59 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>First name:</b>
-  <%= @user.first_name %>
-</p>
-
-<p>
-  <b>Last name:</b>
-  <%= @user.last_name %>
-</p>
-
-<p>
-  <b>Username:</b>
-  <%= @user.username %>
-</p>
-
-<p>
-  <b>Admin:</b>
-  <%= @user.admin %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-
-<p>
-  <b>Puzzle Count:</b>
-  <%= @user.crossword_puzzles_count %>
-</p>
-
-<p>
-  <b>Clue Count:</b>
-  <%= @user.clues_count %>
-</p>
-
-<p>
-  <b>Password Hash:</b>
-  <%= @user.password_hash %>
-</p>
-
-<p>
-  <b>Password Salt:</b>
-  <%= @user.password_salt %>
-</p>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<% if current_user %>
+	<% if current_user.admin %>
+		
+		<p id="notice"><%= notice %></p>
+		
+		<p>
+			<b>First name:</b>
+			<%= @user.first_name %>
+		</p>
+		
+		<p>
+			<b>Last name:</b>
+			<%= @user.last_name %>
+		</p>
+		
+		<p>
+			<b>Username:</b>
+			<%= @user.username %>
+		</p>
+		
+		<p>
+			<b>Admin:</b>
+			<%= @user.admin %>
+		</p>
+		
+		<p>
+			<b>Email:</b>
+			<%= @user.email %>
+		</p>
+		
+		<p>
+			<b>Puzzle Count:</b>
+			<%= @user.crossword_puzzles_count %>
+		</p>
+		
+		<p>
+			<b>Clue Count:</b>
+			<%= @user.clues_count %>
+		</p>
+		
+		<p>
+			<b>Password Hash:</b>
+			<%= @user.password_hash %>
+		</p>
+		
+		<p>
+			<b>Password Salt:</b>
+			<%= @user.password_salt %>
+		</p>
+		
+		
+		<%= link_to 'Edit', edit_user_path(@user) %> |
+		<%= link_to 'Back', users_path %>
+	<% elsif current_user == @user %>
+		This is how other users see your profile!
+	<% else %>
+		
+	<% end %>
+<% end %>

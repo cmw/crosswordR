@@ -45,7 +45,8 @@
 									</ul>
 							</li>
 							<% end %>
-						<%= link_to "<li>Profile</li>".html_safe, users_path %>
+						<%= link_to "<li>View Profile</li>".html_safe, current_user %>
+						<%= link_to "<li>Edit Profile</li>".html_safe, edit_user_path(current_user) %>
 						<%= link_to "<li>Log Out</li>".html_safe, log_out_path %> 
 					<ul>
 				</div>

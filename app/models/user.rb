@@ -24,6 +24,14 @@ class User < ActiveRecord::Base
   	:uniqueness => true,
   	:length => { :minimum => MIN_USERNAME_LENGTH, :maximum => MAX_USERNAME_LENGTH, :message => ": Should be #{MIN_USERNAME_LENGTH}-#{MAX_USERNAME_LENGTH} characters"}
 
+	MIN_NAME_LENGTH = 2
+	validates :first_name,
+		:presence => true,
+		:length => { :minimum => MIN_NAME_LENGTH, :message => ": Should be at least #{MIN_NAME_LENGTH} characters"}
+		validates :last_name,
+		:presence => true,
+		:length => { :minimum => MIN_NAME_LENGTH, :message => ": Should be at least #{MIN_NAME_LENGTH} characters"}
+	
   attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :username
 
   def self.authenticate(username, password)
