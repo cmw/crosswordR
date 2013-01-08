@@ -9,6 +9,7 @@ gem 'pg'
 #was sqlite3
 
 group :development do
+  gem 'taps', :require => false #has an sqlite dependency, which heroku hates
   gem 'sqlite3'
 end
 
