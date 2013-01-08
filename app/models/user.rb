@@ -18,10 +18,11 @@ class User < ActiveRecord::Base
    	:format => { with: VALID_EMAIL_REGEX, :message => ": Only real email addresses, please" } 
   
   MAX_USERNAME_LENGTH = 12
+  MIN_USERNAME_LENGTH = 4
   validates :username,
   	:presence => true,
   	:uniqueness => true,
-  	:length => { :maximum => MAX_USERNAME_LENGTH, :message => ": Please keep your username under #{MAX_USERNAME_LENGTH} characters"}
+  	:length => { :minimum => MIN_USERNAME_LENGTH, :maximum => MAX_USERNAME_LENGTH, :message => ": Should be #{MIN_USERNAME_LENGTH}-#{MAX_USERNAME_LENGTH} characters"}
 
   attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :username
 

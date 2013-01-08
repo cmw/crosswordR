@@ -41,6 +41,7 @@ class CrosswordPuzzlesController < ApplicationController
   # POST /crossword_puzzles.json
   def create
     @crossword_puzzle = CrosswordPuzzle.new(params[:crossword_puzzle])
+    	@crossword_puzzle.user = current_user
 
     respond_to do |format|
       if @crossword_puzzle.save

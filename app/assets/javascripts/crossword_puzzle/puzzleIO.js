@@ -59,6 +59,20 @@ function inputLetters(letterArray){
 		$($cells[i]).val(letterArray[i]);
 	}
 }
+function outputLetterVoids(){
+		var cellString = '';
+		for (var i=0; i<$cells.length; i++){
+				$cell = $($cells[i]);
+				if ($cell.hasClass('void')){
+						cellString += ' ';
+				}
+				else {
+						cellString += $cell.val();
+				}
+		}
+		return cellString.toUpperCase();
+}
+
 function outputClues(){
 	var clueString = '[';
 	var $numberedCells = $('.cell[cellnumber != "-1"]');
