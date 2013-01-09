@@ -588,3 +588,12 @@ img#admin-only {
 	padding: 0.6em 1em;
 	font-weight: bold;
 }
+#logged-out-welcome-container {
+	width: 23.3em;
+	height: 29.4em;
+	margin: 2em auto;
+	background: url(/assets/chalkboardBlack.png);
+	-webkit-box-shadow: 4px 3px 10px rgba(0, 0, 0, 0.8);
+	-moz-box-shadow: 4px 3px 10px rgba(0, 0, 0, 0.8);
+	box-shadow: 4px 3px 10px rgba(0, 0, 0, 0.8);
+}

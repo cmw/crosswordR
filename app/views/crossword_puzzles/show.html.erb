@@ -1,3 +1,5 @@
+<% title @crossword_puzzle.title %>
+
 <% if current_user %>
 	<% if current_user == @crossword_puzzle.user %>
 		This is your puzzle!
@@ -39,9 +41,10 @@
 	<%= link_to 'Edit', edit_crossword_puzzle_path(@crossword_puzzle) %> |
 	<%= link_to 'Back', crossword_puzzles_path %>
 	
-	<% else %>
-		<% title @crossword_puzzle.title %>
-		<script type="text/javascript">
+	<% end %>
+<% end %>
+
+<script type="text/javascript">
 		numRows = <%= @crossword_puzzle.rows %>;
 		numCols = <%= @crossword_puzzle.cols %>;
 		var loadedLetters = [];
@@ -209,9 +212,3 @@
 			</div>
 		</div>
 	</div>
-	
-	
-	<% end %>
-<% else %>
-
-<% end %>

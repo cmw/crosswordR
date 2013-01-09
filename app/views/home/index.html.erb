@@ -1,4 +1,6 @@
 <% title "Home" %>
+
+<% if current_user %>
 <head>
 	<script type="text/javascript">		
 		
@@ -276,3 +278,21 @@
 		</div>
 	</div>
 </body>
+<% else %>
+		<style type="text/css">
+			body {
+				/*
+				Image from http://1.bp.blogspot.com/-4DwniCCS8VY/T2ZyfO9FNTI/AAAAAAAAAPU/dsi7k3ux20M/s640/lenox+coffee+interior.jpg
+				*/
+				background: url(/assets/couchCafe.jpg) no-repeat;
+				background-size: 100%;
+				background-position: center 2em;
+			}
+			html {
+				background: black;
+			}
+		</style>
+		<div id="logged-out-welcome-container">
+			
+		</div>
+<% end %>
