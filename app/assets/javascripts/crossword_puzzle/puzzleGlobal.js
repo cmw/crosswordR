@@ -6,7 +6,7 @@ var row = '<div class="row"></div>';
 function Crossword(voids, letters, clues){
 	this.voids = voids;
 	this.letters = letters;
-	this.clues=clues;
+	this.clues = clues;
 }
 
 //Reference variables used throughout		
@@ -14,8 +14,8 @@ var $cells;
 var $cellNums;
 
 //Variables defining current crossword's dimensions
-var numRows = 15;
-var numCols = 15;
+var numRows;
+var numCols;
 
 // Public counter for counting which cell was last numbered
 var cellNumberingCounter = 1;

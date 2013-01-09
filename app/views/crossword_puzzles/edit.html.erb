@@ -9,7 +9,8 @@
 	<% elsif current_user == @crossword_puzzle.user %>
 		
 		<script type="text/javascript">
-	
+			numRows = <%= @crossword_puzzle.rows %>;
+			numCols = <%= @crossword_puzzle.cols %>;
 		/*
 		Document load function that sets up the puzzle cells and prepares the dblclick
 		event listener to allow the users to change cells to and from void

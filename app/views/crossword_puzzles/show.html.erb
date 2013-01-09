@@ -40,7 +40,7 @@
 	<%= link_to 'Back', crossword_puzzles_path %>
 	
 	<% else %>
-
+		<% title @crossword_puzzle.title %>
 		<script type="text/javascript">
 		numRows = <%= @crossword_puzzle.rows %>;
 		numCols = <%= @crossword_puzzle.cols %>;
@@ -188,7 +188,7 @@
 				</div>
 				<div id='cword' class="shadow"></div>
 				<div id="creatorCredit" class="shadow">
-					<span class="cwordCreator">By <%= name = @crossword_puzzle.user ? @crossword_puzzle.user.username : "[deleted]" %></span></span>
+					<span class="cwordCreator">By <%= name = @crossword_puzzle.user ? @crossword_puzzle.user.first_name + " " + @crossword_puzzle.user.last_name : "[deleted]" %></span></span>
 				</div>
 			</div>
 			<div id="rightControls" class="left">
