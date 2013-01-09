@@ -44,6 +44,9 @@ class CluesController < ApplicationController
 		if !@clue.user && current_user
     	@clue.user = current_user
     end
+    if !@clue.crossword_puzzle && @crossword_puzzle
+    	@clue.crossword_puzzle = @crossword_puzzle
+    end
 
     respond_to do |format|
       if @clue.save
