@@ -3,8 +3,12 @@ admin_only.png: admin_only-56524ee3f5faa65e2bf777db77eb2e22.png
 admin_only/index.png: admin_only-56524ee3f5faa65e2bf777db77eb2e22.png
 advBracket.png: advBracket-212f1deb9915ee34af37ac1f297bf365.png
 advBracket/index.png: advBracket-212f1deb9915ee34af37ac1f297bf365.png
+chalkboardBlack.png: chalkboardBlack-bec897855cade3efd21d02a91668c8f5.png
+chalkboardBlack/index.png: chalkboardBlack-bec897855cade3efd21d02a91668c8f5.png
 clothNapkin.png: clothNapkin-268480db73dfe78d7a9c69beed8b5381.png
 clothNapkin/index.png: clothNapkin-268480db73dfe78d7a9c69beed8b5381.png
+couchCafe.jpg: couchCafe-10308f970da2941b2defdc337809c2e3.jpg
+couchCafe/index.jpg: couchCafe-10308f970da2941b2defdc337809c2e3.jpg
 crosswordPaper.jpeg: crosswordPaper-654031bdac16d96ebc47bb766fa4b9d6.jpeg
 crosswordPaper/index.jpeg: crosswordPaper-654031bdac16d96ebc47bb766fa4b9d6.jpeg
 dish.png: dish-53c637c6f4dd3e6a6b49132d07f619a0.png
@@ -25,7 +29,9 @@ rails.png: rails-a3386665c05a2d82f711a4aaa72d247c.png
 rails/index.png: rails-a3386665c05a2d82f711a4aaa72d247c.png
 woodTable.jpeg: woodTable-d52203b1ab4dd96513004bbf1f2431aa.jpeg
 woodTable/index.jpeg: woodTable-d52203b1ab4dd96513004bbf1f2431aa.jpeg
-application.js: application-6b168fa44b13422cd0cf0597db92c7e1.js
-application/index.js: application-6b168fa44b13422cd0cf0597db92c7e1.js
-application.css: application-c81bec9aebd6a8f1e114b6507a9faff6.css
-application/index.css: application-c81bec9aebd6a8f1e114b6507a9faff6.css
+woodTableMidQBright.jpg: woodTableMidQBright-4c78f4680e6934edc890d98bda318961.jpg
+woodTableMidQBright/index.jpg: woodTableMidQBright-4c78f4680e6934edc890d98bda318961.jpg
+application.js: application-d82658e920d38674d6938c9e88d0c94c.js
+application/index.js: application-d82658e920d38674d6938c9e88d0c94c.js
+application.css: application-491c5d90f8b8b390ff289fa61d0caaf7.css
+application/index.css: application-491c5d90f8b8b390ff289fa61d0caaf7.css
