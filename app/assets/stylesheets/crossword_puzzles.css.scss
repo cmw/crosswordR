@@ -590,10 +590,42 @@ img#admin-only {
 }
 #logged-out-welcome-container {
 	width: 23.3em;
-	height: 29.4em;
+	height: 27.5em;
 	margin: 2em auto;
-	background: url(/assets/chalkboardBlack.png);
+	background: url(/assets/chalkboardBlack.png) no-repeat;
 	-webkit-box-shadow: 0.5em 0.625em 1.8em rgba(0, 0, 0, 1);
 	-moz-box-shadow: 0.5em 0.625em 1.8em rgba(0, 0, 0, 1);
 	box-shadow: 0.5em 0.625em 1.8em rgba(0, 0, 0, 1);
+	padding-top: 2em;
+	color: lightgrey;
+	text-align: center;
+}
+#welcomeBoard {
+	margin: 0em auto 2em auto;
+	display: block;
+	background: url(/assets/welcomeBoard.png) no-repeat;
+	height: 4em;
+	width: 11.6em;
+}
+.chalkboardButton {
+	margin: 0em auto 2em auto;
+	padding: 0.6em 0;
+	color: whitesmoke !important;
+	border: 1px outset;
+	display: block;
+	text-align: center;
+	width: 10em;
+	background: rgba(255,255,255,0.2);
+	font-size: inherit;
+	width: 10em;
+	font-weight: bold;
+	cursor: pointer;
+}
+.chalkboardInput {
+	background: none;
+	border: none;
+	text-align: center;
+	border-bottom: 1px whitesmoke dotted;
+	font-size: inherit;
+	color: white;
 }
