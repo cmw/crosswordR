@@ -64,13 +64,16 @@ function outputLetterVoids(){
 		for (var i=0; i<$cells.length; i++){
 				$cell = $($cells[i]);
 				if ($cell.hasClass('void')){
+						cellString += '_';
+				}
+				else if ($cell.val() ==''){
 						cellString += ' ';
 				}
 				else {
 						cellString += $cell.val();
 				}
 		}
-		return cellString.toUpperCase();
+		return cellString;
 }
 
 function outputClues(){

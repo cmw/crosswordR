@@ -27,11 +27,13 @@ notePaper.png: notePaper-202265201f3843c6f1c5bd729257a926.png
 notePaper/index.png: notePaper-202265201f3843c6f1c5bd729257a926.png
 rails.png: rails-a3386665c05a2d82f711a4aaa72d247c.png
 rails/index.png: rails-a3386665c05a2d82f711a4aaa72d247c.png
+welcomeBoard.png: welcomeBoard-8b191958728fa5626ee7db1b37aad3ca.png
+welcomeBoard/index.png: welcomeBoard-8b191958728fa5626ee7db1b37aad3ca.png
 woodTable.jpeg: woodTable-d52203b1ab4dd96513004bbf1f2431aa.jpeg
 woodTable/index.jpeg: woodTable-d52203b1ab4dd96513004bbf1f2431aa.jpeg
 woodTableMidQBright.jpg: woodTableMidQBright-4c78f4680e6934edc890d98bda318961.jpg
 woodTableMidQBright/index.jpg: woodTableMidQBright-4c78f4680e6934edc890d98bda318961.jpg
-application.js: application-d82658e920d38674d6938c9e88d0c94c.js
-application/index.js: application-d82658e920d38674d6938c9e88d0c94c.js
-application.css: application-491c5d90f8b8b390ff289fa61d0caaf7.css
-application/index.css: application-491c5d90f8b8b390ff289fa61d0caaf7.css
+application.js: application-aea8552657615888f664081291512d5e.js
+application/index.js: application-aea8552657615888f664081291512d5e.js
+application.css: application-504d5bf36bb4bc1c856de55ea5c1e85b.css
+application/index.css: application-504d5bf36bb4bc1c856de55ea5c1e85b.css

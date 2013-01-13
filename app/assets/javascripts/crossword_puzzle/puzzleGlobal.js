@@ -373,9 +373,6 @@ Checks the cells that the user has filled against the answers for the current pu
 Fills in incorrect answers and highlights them red, while highlighting correct answers green.
 */
 function cheat(){
-	if(currentCrossword == dylan2){
-		alert("Duuuuuuude. Just work on a different part of the puzzle. Unless you're stuck on 20-Across, then I'll just tell you... it's ALHEAR.");
-	} else {
 	correctLetters = 0;
 	totalLetters = 0;
 	for(var i = 0; i< $cells.length; i++){
@@ -395,7 +392,6 @@ function cheat(){
 	}
 	var congrats = (correctLetters > 0.8*totalLetters)? 'Awesome job!' : 'Sucks, brah.';
 	$('#cheatResult').css({opacity: 1}).text('You got '+ correctLetters + ' out of ' + totalLetters+' correct. ' + congrats);
-	}
 }
 function showIncorrect(){
 	var incorrectLetters = 0;
