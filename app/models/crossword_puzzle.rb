@@ -16,5 +16,4 @@ class CrosswordPuzzle < ActiveRecord::Base
   	:presence => true,
   	:length => { :minimum => MIN_DIMENSION, :maximum => MAX_DIMENSION, :message => ": Dimensions must be #{MIN_DIMENSION}-#{MAX_DIMENSION} in length"}
 
-
 end

@@ -448,5 +448,5 @@ function newCrossword(){
 	editMode();
 }
 function updateHiddenLetters(){
-	$('#hiddenLetters').text(outputLetterVoids());
+	$('#hiddenLetters').val(outputLetterVoids());
 }

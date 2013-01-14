@@ -67,10 +67,10 @@ class CrosswordPuzzlesController < ApplicationController
 
     respond_to do |format|
       if @crossword_puzzle.update_attributes(params[:crossword_puzzle])
-        format.html { redirect_to @crossword_puzzle, notice: 'Crossword puzzle was successfully updated.' }
+        format.html { redirect_to edit_crossword_puzzle_path(@crossword_puzzle), notice: 'Puzzle saved.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: "edit", notice: 'Error while saving.' }
         format.json { render json: @crossword_puzzle.errors, status: :unprocessable_entity }
       end
     end
@@ -83,8 +83,12 @@ class CrosswordPuzzlesController < ApplicationController
     @crossword_puzzle.destroy
 
     respond_to do |format|
-      format.html { redirect_to crossword_puzzles_url }
-      format.json { head :no_content }
+    	if current_user.admin
+      format.html { redirect_to crossword_puzzles_url, notice: 'Puzzle successfully deleted.' }
+      else 
+			format.html { redirect_to root_url, notice: 'Crossword puzzle successfully deleted.' }
+      end
+			format.json { head :no_content }
     end
   end
 end

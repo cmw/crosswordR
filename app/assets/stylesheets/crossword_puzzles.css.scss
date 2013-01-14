@@ -174,7 +174,7 @@ body {
 #puzzleBox {
 	height: 34em;
 	padding: 2em 0.25em 0.25em 1.5em;
-	width: 58em;
+	width: 58.4em;
 	margin: auto;
 }
 .top-notice {
@@ -287,6 +287,8 @@ input.void {
 	display: inline-block;
 	overflow: auto;
 	width: 17.5em;
+	padding-right: 0.4em;
+	padding-bottom: 1em;
 }
 
 #dishStain {
@@ -639,4 +641,14 @@ img#admin-only {
 .homeFolderItem {
 	background: white;
 	border: 1px dashed grey;
+}
+.editButton {
+	background: white;
+	border: 1px outset grey;
+	padding: 0.3em 1em;
+	font-size: inherit;
+	font-family: inherit;
+	color: inherit;
+	display: inline-block;
+	cursor: pointer;
 }
