@@ -447,3 +447,6 @@ function newCrossword(){
 	clearCredits();
 	editMode();
 }
+function updateHiddenLetters(){
+	$('#hiddenLetters').text(outputLetterVoids());
+}

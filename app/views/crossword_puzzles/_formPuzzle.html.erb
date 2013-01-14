@@ -1,0 +1,20 @@
+<%= form_for(@crossword_puzzle) do |f| %>
+  <% if @crossword_puzzle.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@crossword_puzzle.errors.count, "error") %> prohibited this crossword_puzzle from being saved:</h2>
+
+      <ul>
+      <% @crossword_puzzle.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field hidden">
+    <%= f.label :letters %><br />
+    <%= f.text_field :letters , :id => 'hiddenLetters' %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Save Changes' %>
+  </div>
+<% end %>

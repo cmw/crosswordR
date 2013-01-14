@@ -51,10 +51,12 @@
 		var loadedVoids = [];
 		var letterVoidString = '<%= @crossword_puzzle.letters %>';
 		for(var i = 0; i< letterVoidString.length; i++){
-			if(letterVoidString[i] == ' '){
+			if(letterVoidString[i] == '_'){
 				loadedVoids.push(i);
+				loadedLetters.push('_');
+			} else if (letterVoidString[i] == ' '){
 				loadedLetters.push(' ');
-			} else {
+			} else{
 				loadedLetters.push(letterVoidString[i]);
 			}
 		}

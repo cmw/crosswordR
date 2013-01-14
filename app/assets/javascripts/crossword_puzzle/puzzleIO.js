@@ -15,20 +15,6 @@ function sanitizeClue(clueString){
 	return newString;
 }
 
-function outputVoids(){
-	var cellString = '';
-	var cellArray = new Array();
-	for (var i = 0, ii = $cells.length; i < ii; i++){
-		if($($cells[i]).hasClass('void')){
-			if(cellString.length > 0){
-				cellString += ', ';
-			} 
-			cellString += i;
-			cellArray[cellArray.length]=i;
-		}
-	}
-	return cellArray;
-}
 function inputVoids(voidArray){
 	if(Object.prototype.toString.call(voidArray) === '[object String]'){
 		voidArray = removeBrackets(voidArray).split(',');
@@ -38,25 +24,17 @@ function inputVoids(voidArray){
 		makeVoid($($cells[voidArray[i]]));
 	}
 }
-function outputLetters(){
-	var cellArray = new Array();
-	for (var i =0; i<$cells.length; i++){
-		$cell = $($cells[i]);
-		if ($cell.hasClass('void')){
-			cellArray[i] = '';
-		}
-		else {
-			cellArray[i] = $cell.val();
-		}
-	}
-	return cellArray;
-}
+
 function inputLetters(letterArray){
 	if(Object.prototype.toString.call(letterArray) === '[object String]'){
 		letterArray = removeBrackets(letterArray).split(',');
 	}
 	for (var i = 0; i<$cells.length; i++){
-		$($cells[i]).val(letterArray[i]);
+		if(letterArray[i] != ' '){
+			$($cells[i]).val(letterArray[i]);
+		} else {
+			$($cells[i]).val('');
+		}
 	}
 }
 function outputLetterVoids(){
@@ -76,43 +54,6 @@ function outputLetterVoids(){
 		return cellString;
 }
 
-function outputClues(){
-	var clueString = '[';
-	var $numberedCells = $('.cell[cellnumber != "-1"]');
-	for (var i = 0; i< $numberedCells.length; i++){
-		var $cell = $($numberedCells[i]);
-		if(i==0){
-			if(hasAcrossClue($cell)){
-				clueString += ('{"Across":"'+$cell.attr('acrossClue')+'",');
-			}
-			else {
-				clueString += '{"Across":"",';
-			}
-			if(hasDownClue($cell)){
-				clueString += ('"Down":"' + $cell.attr('downClue')+'"}');
-			}
-			else {
-				clueString += '"Down":""}';
-			}
-		} 
-		else {
-			if(hasAcrossClue($cell)){
-				clueString += (',{"Across":"'+$cell.attr('acrossClue')+'",');
-			}
-			else {
-				clueString += ',{"Across":"",';
-			}
-			if(hasDownClue($cell)){
-				clueString += ('"Down":"' + $cell.attr('downClue')+'"}');
-			}
-			else {
-				clueString += '"Down":""}';
-			}
-		}
-	}
-	clueString += ']';
-	return clueString;
-}
 function inputClues(JSONClueString){
 	var arrayOfAssociativeClueArray = JSON.parse(JSONClueString);
 	for(var i = 0; i< arrayOfAssociativeClueArray.length; i++){

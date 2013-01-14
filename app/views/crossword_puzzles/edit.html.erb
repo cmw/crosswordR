@@ -1,16 +1,24 @@
 <% if current_user %>
-	<% if current_user.admin %> 
-	<h1>Editing crossword_puzzle</h1>
-	
-	<%= render 'form' %>
-	
-	<%= link_to 'Show', @crossword_puzzle %> |
-	<%= link_to 'Back', crossword_puzzles_path %>
-	<% elsif current_user == @crossword_puzzle.user %>
+	<% if current_user == @crossword_puzzle.user %>
 		
 		<script type="text/javascript">
 			numRows = <%= @crossword_puzzle.rows %>;
 			numCols = <%= @crossword_puzzle.cols %>;
+			
+			var loadedLetters = [];
+			var loadedVoids = [];
+			var letterVoidString = '<%= @crossword_puzzle.letters %>';
+			for(var i = 0; i< letterVoidString.length; i++){
+				if(letterVoidString[i] == '_'){
+					loadedVoids.push(i);
+					loadedLetters.push('_');
+				} else if (letterVoidString[i] == ' '){
+					loadedLetters.push(' ');
+				} else{
+					loadedLetters.push(letterVoidString[i]);
+				}
+			}
+			currentCrossword = new Crossword(loadedVoids, loadedLetters, []);
 		/*
 		Document load function that sets up the puzzle cells and prepares the dblclick
 		event listener to allow the users to change cells to and from void
@@ -179,6 +187,11 @@
 					$(this).text("Click to change title");
 				}
 			});
+			
+				inputVoids(currentCrossword.voids);
+				inputLetters(currentCrossword.letters);
+				numberCells();
+			
 		});
 	</script>
 		
@@ -255,17 +268,8 @@
 				</div>
 			</div>
 		</div>
-		<div id="botPuzzleBox" class="shadow">
-			<h5>Puzzle Data (comma-separated)</h5>
-			<textarea id="cwordInputOutput" rows = "3" cols="100" placeholder="Input or output data about this crossword"></textarea>
-			<button class='inputOutputButton' value="Input Voids" id="inputVoids" onclick=" inputVoids($('#cwordInputOutput').val());">Input Voids</button>
-			<button class='inputOutputButton' value="Output Voids" id="outputVoids" onclick="$('#cwordInputOutput').val('['+outputVoids().join(',')+']');">Output Voids</button>
-			<button class='inputOutputButton' value="Input Letters" id="inputLetters" onclick="inputLetters($('#cwordInputOutput').val());">Input Letters</button>
-			<button class='inputOutputButton' value="Output Letters" id="outputLetters" onclick="$('#cwordInputOutput').val('['+outputLetters().join(',')+']');">Output Letters</button>
-			<button class='inputOutputButton' value="Input Clues" id="inputClues" onclick="inputClues($('#cwordInputOutput').val());return false;">Input Clues</button>
-			<button class='inputOutputButton' value="Output Clues" id="outputClues" onclick="$('#cwordInputOutput').val(outputClues());">Output Clues</button>
-			<br />
-		</div>
+		
+		<%= render 'formPuzzle' %>
 	</div>
 	<!--<div id="notes"></div>-->
 	<div id="wordsToUseBar" class="draggable shadow">
@@ -276,7 +280,15 @@
 			<ul id="wordsUsed">
 			</ul>
 		</div>
-	</div>		
+	</div>
+			<% if current_user.admin %> 
+		<h1>Editing crossword_puzzle</h1>
+		
+		<%= render 'form' %>
+		
+		<%= link_to 'Show', @crossword_puzzle %> |
+		<%= link_to 'Back', crossword_puzzles_path %>
+	<% end %>		
 		
 	<% else %>
 		You may not edit another user's puzzle...
