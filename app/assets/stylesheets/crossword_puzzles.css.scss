@@ -639,8 +639,13 @@ img#admin-only {
 	border-radius: 0.5em;
 }
 .homeFolderItem {
-	background: white;
 	border: 1px dashed grey;
+}
+.homeFolderItem.published{
+	background-color: rgb(180,255,180);
+}
+.homeFolderItem.unpublished{
+	background-color: rgb(255,255,180);
 }
 .editButton {
 	background: white;
@@ -651,4 +656,14 @@ img#admin-only {
 	color: inherit;
 	display: inline-block;
 	cursor: pointer;
+}
+.hangFlag {
+	margin: 0 auto;
+	float: center;
+	max-width: 20em;
+	border-bottom-left-radius: 0.5em;
+	border-bottom-right-radius: 0.5em;
+	text-align: center;
+	background: url(/assets/crosswordPaper.jpeg);
+	padding: 0em 1em 0.4em 1em;
 }

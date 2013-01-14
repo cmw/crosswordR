@@ -3,45 +3,10 @@
 	
 	<% if current_user %>
 		<% if current_user == @crossword_puzzle.user %>
-			This is your puzzle!
-		<% end %>
-		
-		<% if current_user.admin %>
-		<p id="notice"><%= notice %></p>
-		
-		<p>
-			<b>Title:</b>
-			<%= @crossword_puzzle.title %>
-		</p>
-		
-		<p>
-			<b>User:</b>
-			<%= @crossword_puzzle.user_id %>
-		</p>
-		
-		<p>
-			<b>Rows:</b>
-			<%= @crossword_puzzle.rows %>
-		</p>
-		
-		<p>
-			<b>Cols:</b>
-			<%= @crossword_puzzle.cols %>
-		</p>
-		
-		<p>
-			<b>Clue Count:</b>
-			<%= @crossword_puzzle.clues_count %>
-		</p>
-		
-		<p>
-			<b>Letters:</b>
-			<%= @crossword_puzzle.letters %>
-		</p>
-		
-		<%= link_to 'Edit', edit_crossword_puzzle_path(@crossword_puzzle) %> |
-		<%= link_to 'Back', crossword_puzzles_path %>
-		
+			<div class="hangFlag">
+				This is your puzzle!<br />
+				<%= link_to "<b><u>Edit Puzzle</u></b>".html_safe, edit_crossword_puzzle_path(@crossword_puzzle) %>
+			</div>
 		<% end %>
 	<% end %>
 	
@@ -209,6 +174,45 @@
 				</div>
 			</div>
 		</div>
+		
+		<% if current_user && current_user.admin %>
+		<p id="notice"><%= notice %></p>
+		
+		<p>
+			<b>Title:</b>
+			<%= @crossword_puzzle.title %>
+		</p>
+		
+		<p>
+			<b>User:</b>
+			<%= @crossword_puzzle.user_id %>
+		</p>
+		
+		<p>
+			<b>Rows:</b>
+			<%= @crossword_puzzle.rows %>
+		</p>
+		
+		<p>
+			<b>Cols:</b>
+			<%= @crossword_puzzle.cols %>
+		</p>
+		
+		<p>
+			<b>Clue Count:</b>
+			<%= @crossword_puzzle.clues_count %>
+		</p>
+		
+		<p>
+			<b>Letters:</b>
+			<%= @crossword_puzzle.letters %>
+		</p>
+		
+		<%= link_to 'Edit', edit_crossword_puzzle_path(@crossword_puzzle) %> |
+		<%= link_to 'Back', crossword_puzzles_path %>
+		
+		<% end %>
+		
 <% else %>
 	That puzzle does not appear to exist...
 <% end %>

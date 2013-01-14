@@ -5,15 +5,26 @@ class CrosswordPuzzle < ActiveRecord::Base
 
   attr_accessible :clues_count, :cols, :letters, :published, :rows, :title, :user_id
 
-	MIN_DIMENSION = 2
+	MIN_DIMENSION = 4
   MAX_DIMENSION = 30
   
-  validates :cols,
-  	:presence => true,
-  	:length => { :minimum => MIN_DIMENSION, :maximum => MAX_DIMENSION, :message => ": Dimensions must be #{MIN_DIMENSION}-#{MAX_DIMENSION} in length"}
-
   validates :rows,
   	:presence => true,
-  	:length => { :minimum => MIN_DIMENSION, :maximum => MAX_DIMENSION, :message => ": Dimensions must be #{MIN_DIMENSION}-#{MAX_DIMENSION} in length"}
+  	:numericality => { :only_integer => true , :message => ': Must be an integer'},
+  	:inclusion => {:in => MIN_DIMENSION..MAX_DIMENSION, :message => ": Dimensions must be #{MIN_DIMENSION}-#{MAX_DIMENSION} in length"}
+
+  validates :cols,
+  	:presence => true,
+  	:numericality => { :only_integer => true , :message => ': Must be an integer'},
+  	:inclusion => {:in => MIN_DIMENSION..MAX_DIMENSION, :message => ": Dimensions must be #{MIN_DIMENSION}-#{MAX_DIMENSION} in length"}
+
+
+	MIN_TITLE_LENGTH = 3
+	MAX_TITLE_LENGTH = 35
+		
+	validates :title,
+  	:presence => true,
+  	:length => { :minimum => MIN_TITLE_LENGTH, :maximum => MAX_TITLE_LENGTH, :message => ": Must be #{MIN_TITLE_LENGTH}-#{MAX_TITLE_LENGTH} characters long"}
+
 
 end
