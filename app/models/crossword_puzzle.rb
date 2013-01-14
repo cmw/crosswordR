@@ -10,12 +10,10 @@ class CrosswordPuzzle < ActiveRecord::Base
   
   validates :cols,
   	:presence => true,
-  	:uniqueness => true,
   	:length => { :minimum => MIN_DIMENSION, :maximum => MAX_DIMENSION, :message => ": Dimensions must be #{MIN_DIMENSION}-#{MAX_DIMENSION} in length"}
 
   validates :rows,
   	:presence => true,
-  	:uniqueness => true,
   	:length => { :minimum => MIN_DIMENSION, :maximum => MAX_DIMENSION, :message => ": Dimensions must be #{MIN_DIMENSION}-#{MAX_DIMENSION} in length"}
 
 

@@ -66,23 +66,15 @@
 					<div class="downNav"></div>
 					<ul class="dropMenu">
 					
-					<!-- Figure out how to filter this more efficiently-->
 						<% User.order(:last_name).each do |user| %>
 							<% if user.has_published %>
 							<li><%= user.last_name %>
 								<div class="leftNav"></div>
 								<ul class="leftMenu">
 								
-									<!-- Figure out how to filter this more efficiently-->
-									<% user.crossword_puzzles.each do |a_puzzle| %>
-									
-										<% if a_puzzle.published %>
-										
+									<% user.crossword_puzzles.where(:published => true).each do |a_puzzle| %>
 											<% puzzle_list_item = '<li>'+a_puzzle.title.split(" ")[0][0,13]+'</li>' %>
 											<%= link_to puzzle_list_item.html_safe, a_puzzle %>
-											
-										<% end %>
-										
 									<% end %>
 			
 								</ul>
