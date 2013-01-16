@@ -1,4 +1,10 @@
 class CluesController < ApplicationController
+  before_filter :get_clue, :only => [:show, :edit, :update, :destroy]
+
+  def get_clue
+    @clue = Clue.find(params[:id])
+  end
+
   # GET /clues
   # GET /clues.json
   def index
@@ -13,7 +19,6 @@ class CluesController < ApplicationController
   # GET /clues/1
   # GET /clues/1.json
   def show
-    @clue = Clue.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +39,11 @@ class CluesController < ApplicationController
 
   # GET /clues/1/edit
   def edit
-    @clue = Clue.find(params[:id])
+
+    unless current_user && ( (current_user == @clue.user) || current_user[:admin] )
+      redirect_to root_url, :notice => "Sorry, you can't edit other people's clues"
+    end
+
   end
 
   # POST /clues
@@ -62,7 +71,6 @@ class CluesController < ApplicationController
   # PUT /clues/1
   # PUT /clues/1.json
   def update
-    @clue = Clue.find(params[:id])
 
     respond_to do |format|
       if @clue.update_attributes(params[:clue])
@@ -78,7 +86,6 @@ class CluesController < ApplicationController
   # DELETE /clues/1
   # DELETE /clues/1.json
   def destroy
-    @clue = Clue.find(params[:id])
     @clue.destroy
 
     respond_to do |format|

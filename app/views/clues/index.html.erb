@@ -1,4 +1,4 @@
-<% if current_user && current_user.admin %>
+<% if logged_in? && admin? %>
 	<h4>Total clues: <%= Clue.count %></h4>
 
 	<h1>Listing clues</h1>

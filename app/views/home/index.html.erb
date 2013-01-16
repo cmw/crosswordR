@@ -1,6 +1,6 @@
 <% title "Home" %>
 
-<% if current_user %>
+<% if logged_in? %>
 
 	<div class="homeFolder">
 		<h2>Solutions in Progress</h2>
@@ -63,10 +63,10 @@
 			<div id="welcomeBoard"></div>
 			<%= form_tag sessions_path do %>
 			<p>
-				<%= text_field_tag :username, params[:username], :placeholder => "username", :class => "chalkboardInput" %>
+				<%= text_field_tag :username, params[:username], :placeholder => "username", :class => "chalkboardInput subtle-input" %>
 			</p>
 			<p>
-				<%= password_field_tag :password , nil,  :class => "chalkboardInput", :placeholder => "password" %>
+				<%= password_field_tag :password , nil,  :class => "chalkboardInput subtle-input", :placeholder => "password" %>
 			</p>
 				<%= submit_tag "LOG IN" , :class => "chalkboardButton" %>
 		<% end %>

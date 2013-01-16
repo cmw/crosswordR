@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
   def new
   end
   
@@ -8,7 +9,7 @@ class SessionsController < ApplicationController
   		session[:user_id] = user.id
   		redirect_to root_url, :notice => "Logged in!"
   	else
-  		flash.now.alert = "Invalid email or password"
+  		flash[:notice] = "Invalid email/password combination"
   		render "new"
   	end
   end

@@ -22,7 +22,7 @@
 			<%= link_to image_tag("/assets/headerIcon.png", :height => "85%", :alt => "Crossword Café -- Home"), root_url %>
 			<div id="headQuote">“A writer is someone who can make a riddle out of an answer.”</div>
 			<nav class="right headerNav">
-				<% if current_user %>
+				<% if logged_in? %>
 				<span class="headerSpacer right"></span>
 				<div class ="menuTab">
 					<% if current_user.first_name || current_user.last_name %>
@@ -34,7 +34,7 @@
 					<div class="downNav"></div>
 						<ul class="dropMenu">
 					
-							<% if current_user.admin%>
+							<% if admin? %>
 							<li> Admin
 									<div class="leftNav"></div>
 									<ul class="leftMenu">

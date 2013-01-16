@@ -1,7 +1,7 @@
 <% if @crossword_puzzle %>
 	<% title @crossword_puzzle.title %>
 	
-	<% if current_user %>
+	<% if logged_in? %>
 		<% if current_user == @crossword_puzzle.user %>
 			<div class="hangFlag">
 				This is your puzzle!<br />
@@ -175,7 +175,7 @@
 			</div>
 		</div>
 		
-		<% if current_user && current_user.admin %>
+		<% if logged_in? && admin? %>
 		<p id="notice"><%= notice %></p>
 		
 		<p>
@@ -214,5 +214,5 @@
 		<% end %>
 		
 <% else %>
-	That puzzle does not appear to exist...
+	That puzzle doesn't exist...
 <% end %>

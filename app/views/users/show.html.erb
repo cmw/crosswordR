@@ -1,4 +1,5 @@
-<% if current_user %>
+<% if logged_in? %>
+	<% title @user.username %>
 	<% if current_user.admin %>
 		
 		<p id="notice"><%= notice %></p>

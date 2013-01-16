@@ -1,4 +1,4 @@
-<% if current_user %>
+<% if logged_in? %>
 	<% if current_user == @crossword_puzzle.user %>
 		
 		<script type="text/javascript">
@@ -283,7 +283,7 @@
 			</ul>
 		</div>
 	</div>
-			<% if current_user.admin %> 
+			<% if admin? %> 
 		<h1>Editing crossword_puzzle</h1>
 		
 		<%= render 'form' %>

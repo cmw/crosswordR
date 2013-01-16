@@ -53,6 +53,18 @@ input[type='checkbox'] {
 .block {
 	display: block !important;
 }
+.inline-block {
+	display: inline-block !important;
+}
+.subtle-input {
+	background: none;
+	border: none;
+	text-align: center;
+	font-size: inherit;
+}
+.bold {
+	font-weight: bold;
+}
 
 /* Specific Classes */
 .shadow {
@@ -624,11 +636,7 @@ img#admin-only {
 	cursor: pointer;
 }
 .chalkboardInput {
-	background: none;
-	border: none;
-	text-align: center;
 	border-bottom: 1px whitesmoke dotted;
-	font-size: inherit;
 	color: white;
 }
 .homeFolder {
@@ -666,4 +674,34 @@ img#admin-only {
 	text-align: center;
 	background: url(/assets/crosswordPaper.jpeg);
 	padding: 0em 1em 0.4em 1em;
+}
+.newPuzzleUser {
+	margin: 1em auto 0 auto;
+	max-width: 15em;
+	text-align: center;
+	background: url(/assets/crosswordPaper.jpeg);
+	padding: 0.5em 1em;
+}
+.newPuzzleUser p {
+	background: rgba(0,0,0,0.1);
+	padding: 0.3em 0.6em;
+}
+.newPuzzleUserInput {
+	color: #333;
+}
+.newPuzzleUserButton {
+	margin: 1em auto 1em auto;
+	padding: 0.6em 0;
+	border: 1px outset;
+	display: block;
+	text-align: center;
+	width: 10em;
+	background: lightgrey;
+	font-size: inherit;
+	width: 10em;
+	font-weight: bold;
+	cursor: pointer;
+}
+.under-dash {
+	border-bottom: 1px dashed #333;
 }

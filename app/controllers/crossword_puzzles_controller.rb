@@ -1,4 +1,10 @@
 class CrosswordPuzzlesController < ApplicationController
+  before_filter :get_crossword_puzzle, :only => [:show, :edit, :update, :destroy]
+
+  def get_crossword_puzzle
+    @crossword_puzzle = CrosswordPuzzle.find(params[:id])
+  end
+
   # GET /crossword_puzzles
   # GET /crossword_puzzles.json
   def index
@@ -13,8 +19,6 @@ class CrosswordPuzzlesController < ApplicationController
   # GET /crossword_puzzles/1
   # GET /crossword_puzzles/1.json
   def show
-    @crossword_puzzle = CrosswordPuzzle.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @crossword_puzzle }
@@ -34,7 +38,9 @@ class CrosswordPuzzlesController < ApplicationController
 
   # GET /crossword_puzzles/1/edit
   def edit
-    @crossword_puzzle = CrosswordPuzzle.find(params[:id])
+    unless current_user && ( (current_user == @crossword_puzzle.user) || current_user[:admin] )
+      redirect_to root_url, :notice => "Sorry, you can't edit other people's puzzles"
+    end
   end
 
   # POST /crossword_puzzles
@@ -63,8 +69,6 @@ class CrosswordPuzzlesController < ApplicationController
   # PUT /crossword_puzzles/1
   # PUT /crossword_puzzles/1.json
   def update
-    @crossword_puzzle = CrosswordPuzzle.find(params[:id])
-
     respond_to do |format|
       if @crossword_puzzle.update_attributes(params[:crossword_puzzle])
         format.html { redirect_to edit_crossword_puzzle_path(@crossword_puzzle), notice: 'Puzzle saved.' }
@@ -79,7 +83,6 @@ class CrosswordPuzzlesController < ApplicationController
   # DELETE /crossword_puzzles/1
   # DELETE /crossword_puzzles/1.json
   def destroy
-    @crossword_puzzle = CrosswordPuzzle.find(params[:id])
     @crossword_puzzle.destroy
 
     respond_to do |format|
