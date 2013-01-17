@@ -1,0 +1,139 @@
+// Place all global styles here.
+// They will automatically be included in application.css.
+
+/* Ubiquitous Elements */
+a {
+		text-decoration: none;
+		color: inherit;
+}
+a:visited {
+		color: inherit;
+}
+
+hr {
+	clear: left;
+	margin: 0.3em 0 0.3em 0;
+}
+h3 {
+	text-align: center;
+	margin: 0.5em 0 0.5em 0;
+}
+h5 {
+	margin: 0em 0 0.5em 0;
+	clear: left;
+}
+h6 {
+	margin: 0em 0 0.5em 0;
+	clear: left;
+}
+button{
+	margin: 0;
+}
+
+/* Generic Classes */
+.left {
+	float: left !important;
+}
+.right {
+	float: right !important;
+}
+.text-center {
+	text-align: center;
+}
+.hidden {
+	display: none !important;
+}
+.weakHidden {
+	display: none;
+}
+.pointer:hover {
+	cursor: pointer;
+}
+input[type='checkbox'] {
+	cursor: pointer;
+}
+.block {
+	display: block !important;
+}
+.inline-block {
+	display: inline-block !important;
+}
+.subtle-input {
+	background: none;
+	border: none;
+	text-align: center;
+	font-size: inherit;
+}
+.bold {
+	font-weight: bold;
+}
+
+/* Specific Classes */
+.shadow {
+	-webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+	box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+}
+.editTools {
+	display: none;
+}
+.container {
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+}
+.hiddenInput {
+	padding: 0;
+	background: none;
+	border: none;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+tr.limited, th.limited {
+	max-height: 10em;
+	overflow: hidden;
+}
+
+td.limited {
+	word-wrap: break-word;
+	vertical-align: top;
+	max-width: 20em;
+	word-break: break-all;
+}
+table.backed {
+	background-color: white !important;
+}
+
+/* The Document */
+html {
+	background: url(/assets/woodTableMidQBright.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height: 100%;
+}
+body {
+	margin: 0;
+	font-family:'Helvetica Neue',Arial,sans-serif;
+	z-index: -4;
+	position: relative;
+	color: #333;
+	font-size: 16px;
+	background-color: rgba(255,255,255,0.15) !important;
+	height: 100%;
+	min-height: 38em;
+}
+
+.hangFlag {
+	margin: 0 auto;
+	float: center;
+	max-width: 20em;
+	border-bottom-left-radius: 0.5em;
+	border-bottom-right-radius: 0.5em;
+	text-align: center;
+	background: url(/assets/crosswordPaper.jpeg);
+	padding: 0em 1em 0.4em 1em;
+}

@@ -2,55 +2,22 @@
 
 <% if logged_in? %>
 
-	<div class="homeFolder">
-		<h2>Solutions in Progress</h2>
-		<% if current_user.crossword_solutions_count > 0 %>
-				<% current_user.crossword_solutions.all(:order => 'created_at DESC').each do |sol| %>
-				<div>
-						<%= link_to sol.crossword_puzzle.title + ' by ' + sol.crossword_puzzle.user, edit_crossword_puzzle_path(sol.crossword_puzzle) %>
-				</div>
-				<% end %>
-		<% else %>
-			You haven't attempted any puzzles yet!
-		<% end %>
-	</div>
-	
-	<div class="homeFolder">
-		<h2>My Puzzles</h2>
-		<% if current_user.crossword_puzzles_count > 0 %>
-				<% if current_user.crossword_puzzles.where(:published => false).count > 0 %>
-					<h3>Unpublished</h3>
-					<% current_user.crossword_puzzles.where(:published => false).order('created_at DESC').each do |puz| %>
-					<div class="homeFolderItem unpublished">
-							<%= puz.title %> -- <%= puz.rows %>x<%= puz.cols %> -- <%= puz.created_at.strftime("%d %b. %Y") %>
-							<%= link_to "<span class='right'>View</span>".html_safe, crossword_puzzle_path(puz) %> <%= link_to "<span class='right'>Edit</span>".html_safe, edit_crossword_puzzle_path(puz) %>
-			
-					</div>
-					<% end %>
-				<% end %>
-				
-				<% if current_user.crossword_puzzles.where(:published => true).count > 0 %>
-					<h3>Published</h3>
-					<% current_user.crossword_puzzles.where(:published => true).order('created_at DESC').each do |puz| %>
-					<div class="homeFolderItem published">
-							<%= puz.title %> -- <%= puz.rows %>x<%= puz.cols %> -- <%= puz.created_at.strftime("%d %b. %Y") %>
-							<%= link_to "<span class='right'>View</span>".html_safe, crossword_puzzle_path(puz) %>
-							<%= link_to "<span class='right'>Edit</span>".html_safe, edit_crossword_puzzle_path(puz) %>
-			
-					</div>
-					<% end %>
-				<% end %>
-		<% else %>
-				You haven't created any puzzles yet!
-		<% end %>
-	</div>
-
 	<div class="homeMenu shadow" >
 		<div class="homeMenuSide">
 			<div class="topLeftMenuCorner menuCorner"></div>
 			<div class="topRightMenuCorner menuCorner"></div>
 
 			<h3>Solutions</h3>
+
+				<% if current_user.crossword_solutions_count > 0 %>
+					<% current_user.crossword_solutions.all(:order => 'created_at DESC').each do |sol| %>
+						<div>
+							<%= link_to sol.crossword_puzzle.title + ' by ' + sol.crossword_puzzle.user, edit_crossword_puzzle_path(sol.crossword_puzzle) %>
+						</div>
+					<% end %>
+				<% else %>
+					<p class="text-center">You haven't attempted any puzzles yet!</p>
+				<% end %>
 
 			<div class="bottomLeftMenuCorner menuCorner"></div>
 			<div class="bottomRightMenuCorner menuCorner"></div>
@@ -61,6 +28,33 @@
 			<div class="topRightMenuCorner menuCorner"></div>
 
 			<h3>Puzzles</h3>
+
+				<% if current_user.crossword_puzzles_count > 0 %>
+						<% if current_user.crossword_puzzles.where(:published => false).count > 0 %>
+							Unpublished
+							<% current_user.crossword_puzzles.where(:published => false).order('created_at DESC').each do |puz| %>
+							<div class="homeFolderItem unpublished">
+									<%= puz.title %> -- <%= puz.rows %>x<%= puz.cols %> -- <%= puz.created_at.strftime("%d %b. %Y") %>
+									<%= link_to "<span class='right'>View</span>".html_safe, crossword_puzzle_path(puz) %> <%= link_to "<span class='right'>Edit</span>".html_safe, edit_crossword_puzzle_path(puz) %>
+					
+							</div>
+							<% end %>
+						<% end %>
+						
+						<% if current_user.crossword_puzzles.where(:published => true).count > 0 %>
+							Published
+							<% current_user.crossword_puzzles.where(:published => true).order('created_at DESC').each do |puz| %>
+							<div class="homeFolderItem published">
+									<%= puz.title %> -- <%= puz.rows %>x<%= puz.cols %> -- <%= puz.created_at.strftime("%d %b. %Y") %>
+									<%= link_to "<span class='right'>View</span>".html_safe, crossword_puzzle_path(puz) %>
+									<%= link_to "<span class='right'>Edit</span>".html_safe, edit_crossword_puzzle_path(puz) %>
+					
+							</div>
+							<% end %>
+						<% end %>
+				<% else %>
+						<p class="text-center">You haven't created any puzzles yet!</p>
+				<% end %>
 
 			<div class="bottomLeftMenuCorner menuCorner"></div>
 			<div class="bottomRightMenuCorner menuCorner"></div>

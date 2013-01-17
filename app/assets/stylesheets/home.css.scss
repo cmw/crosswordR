@@ -2,20 +2,70 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#logged-out-welcome-container {
+	width: 23.3em;
+	height: 26.5em;
+	margin: 2em auto;
+	background: url(/assets/chalkboardBlack.png) no-repeat;
+	-webkit-box-shadow: 0.5em 0.625em 1.8em rgba(0, 0, 0, 1);
+	-moz-box-shadow: 0.5em 0.625em 1.8em rgba(0, 0, 0, 1);
+	box-shadow: 0.5em 0.625em 1.8em rgba(0, 0, 0, 1);
+	padding-top: 3em;
+	color: lightgrey;
+	text-align: center;
+}
+#welcomeBoard {
+	margin: 0em auto 2em auto;
+	display: block;
+	background: url(/assets/welcomeBoard.png) no-repeat;
+	height: 4em;
+	width: 11.6em;
+}
+.chalkboardButton {
+	margin: 0em auto 2em auto;
+	padding: 0.6em 0;
+	color: whitesmoke !important;
+	border: 1px outset;
+	display: block;
+	text-align: center;
+	width: 10em;
+	background: rgba(255,255,255,0.2);
+	font-size: inherit;
+	width: 10em;
+	font-weight: bold;
+	cursor: pointer;
+}
+.chalkboardInput {
+	border-bottom: 1px whitesmoke dotted;
+	color: white;
+}
+
+.homeFolderItem {
+	border: 1px dashed grey;
+}
+.homeFolderItem.published{
+	background-color: rgb(180,255,180);
+}
+.homeFolderItem.unpublished{
+	background-color: rgb(255,255,180);
+}
+
 .homeMenu {
 	background: rgb(229,222,196);
-	width: 42.3em;
-	margin: 0 auto;
+	width: 50.3em;
+	margin: 1.5em auto 0 auto;
 	overflow: auto;
 	border-radius: 0.2em;
+	position: relative;
 }
 .homeMenuSide {
-	width: 20em;
+	width: 23em;
 	min-height: 10em;
 	background: rgb(250,245,239);
-	display: inline-block;
 	margin: 1em 0.5em 1em 0.5em;
 	position: relative;
+	float: left;
+	padding: 0.5em;
 }
 .homeMenu h3 {
 	
