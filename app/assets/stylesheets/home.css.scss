@@ -1,3 +1,48 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.homeMenu {
+	background: rgb(229,222,196);
+	width: 42.3em;
+	margin: 0 auto;
+	overflow: auto;
+	border-radius: 0.2em;
+}
+.homeMenuSide {
+	width: 20em;
+	min-height: 10em;
+	background: rgb(250,245,239);
+	display: inline-block;
+	margin: 1em 0.5em 1em 0.5em;
+	position: relative;
+}
+.homeMenu h3 {
+	
+}
+.menuCorner {
+	width: 1em;
+	height: 1em;
+	position: absolute;
+	background: rgb(229,222,196);
+}
+.topLeftMenuCorner {
+	top: 0;
+	left: 0;
+	border-bottom-right-radius: 1em;
+}
+.topRightMenuCorner {
+	top: 0;
+	right: 0;
+	border-bottom-left-radius: 1em;
+}
+.bottomLeftMenuCorner {
+	bottom: 0;
+	left: 0;
+	border-top-right-radius: 1em;
+}
+.bottomRightMenuCorner {
+	bottom: 0;
+	right: 0;
+	border-top-left-radius: 1em;
+}

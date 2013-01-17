@@ -45,14 +45,16 @@ nav.headerNav {
 	position: relative;
 }
 #headQuote {
-	margin: 0 2em;
+	margin: 1em 2em;
 	color: #eee;
 	min-width: 25em;
 	max-width: 27.5em;
 	font-family: cursive;
 	float: left;
-	height: 100%;
-	line-height: 3.375em;				
+	height: 1.4em;
+	padding-right: 0.4em;
+	line-height: 3.375em;
+	background:url(/assets/headQuote.png);				
 }
 nav.headerNav div {
 	height: 100%;
