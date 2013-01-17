@@ -2,129 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/* Ubiquitous Elements */
-a {
-		text-decoration: none;
-		color: inherit;
-}
-a:visited {
-		color: inherit;
-}
-
-hr {
-	clear: left;
-	margin: 0.3em 0 0.3em 0;
-}
-h3 {
-	text-align: center;
-	margin: 0.5em 0 0.5em 0;
-}
-h5 {
-	margin: 0em 0 0.5em 0;
-	clear: left;
-}
-h6 {
-	margin: 0em 0 0.5em 0;
-	clear: left;
-}
-button{
-	margin: 0;
-}
-
-/* Generic Classes */
-.left {
-	float: left !important;
-}
-.right {
-	float: right !important;
-}
-.hidden {
-	display: none !important;
-}
-.weakHidden {
-	display: none;
-}
-.pointer:hover {
-	cursor: pointer;
-}
-input[type='checkbox'] {
-	cursor: pointer;
-}
-.block {
-	display: block !important;
-}
-.inline-block {
-	display: inline-block !important;
-}
-.subtle-input {
-	background: none;
-	border: none;
-	text-align: center;
-	font-size: inherit;
-}
-.bold {
-	font-weight: bold;
-}
-
-/* Specific Classes */
-.shadow {
-	-webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
-	-moz-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
-	box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
-}
-.editTools {
-	display: none;
-}
-.container {
-	display: inline-block;
-	padding: 0;
-	margin: 0;
-}
-.hiddenInput {
-	padding: 0;
-	background: none;
-	border: none;
-	font-family: inherit;
-	font-size: inherit;
-	font-weight: inherit;
-}
-
-tr.limited, th.limited {
-	max-height: 10em;
-	overflow: hidden;
-}
-
-td.limited {
-	word-wrap: break-word;
-	vertical-align: top;
-	max-width: 20em;
-	word-break: break-all;
-}
-table.backed {
-	background-color: white !important;
-}
-
-/* The Document */
-html {
-	background: url(/assets/woodTableMidQBright.jpg) no-repeat center center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	height: 100%;
-}
-body {
-	margin: 0;
-	font-family:'Helvetica Neue',Arial,sans-serif;
-	z-index: -4;
-	position: relative;
-	color: #333;
-	font-size: 16px;
-	background-color: rgba(255,255,255,0.15) !important;
-	height: 100%;
-	min-height: 38em;
-}
-
 /* Name of Puzzle */			
 #puzzleName {
 	width: 100%;
@@ -602,59 +479,7 @@ img#admin-only {
 	padding: 0.6em 1em;
 	font-weight: bold;
 }
-#logged-out-welcome-container {
-	width: 23.3em;
-	height: 26.5em;
-	margin: 2em auto;
-	background: url(/assets/chalkboardBlack.png) no-repeat;
-	-webkit-box-shadow: 0.5em 0.625em 1.8em rgba(0, 0, 0, 1);
-	-moz-box-shadow: 0.5em 0.625em 1.8em rgba(0, 0, 0, 1);
-	box-shadow: 0.5em 0.625em 1.8em rgba(0, 0, 0, 1);
-	padding-top: 3em;
-	color: lightgrey;
-	text-align: center;
-}
-#welcomeBoard {
-	margin: 0em auto 2em auto;
-	display: block;
-	background: url(/assets/welcomeBoard.png) no-repeat;
-	height: 4em;
-	width: 11.6em;
-}
-.chalkboardButton {
-	margin: 0em auto 2em auto;
-	padding: 0.6em 0;
-	color: whitesmoke !important;
-	border: 1px outset;
-	display: block;
-	text-align: center;
-	width: 10em;
-	background: rgba(255,255,255,0.2);
-	font-size: inherit;
-	width: 10em;
-	font-weight: bold;
-	cursor: pointer;
-}
-.chalkboardInput {
-	border-bottom: 1px whitesmoke dotted;
-	color: white;
-}
-.homeFolder {
-	background-color: rgba(200,200,200,0.9);
-	margin: 1em auto;
-	width: 30em;
-	padding: 0em 2em 0.4em 2em;
-	border-radius: 0.5em;
-}
-.homeFolderItem {
-	border: 1px dashed grey;
-}
-.homeFolderItem.published{
-	background-color: rgb(180,255,180);
-}
-.homeFolderItem.unpublished{
-	background-color: rgb(255,255,180);
-}
+
 .editButton {
 	background: white;
 	border: 1px outset grey;
@@ -664,16 +489,6 @@ img#admin-only {
 	color: inherit;
 	display: inline-block;
 	cursor: pointer;
-}
-.hangFlag {
-	margin: 0 auto;
-	float: center;
-	max-width: 20em;
-	border-bottom-left-radius: 0.5em;
-	border-bottom-right-radius: 0.5em;
-	text-align: center;
-	background: url(/assets/crosswordPaper.jpeg);
-	padding: 0em 1em 0.4em 1em;
 }
 .newPuzzleUser {
 	margin: 1em auto 0 auto;
@@ -704,48 +519,4 @@ img#admin-only {
 }
 .under-dash {
 	border-bottom: 1px dashed #333;
-}
-.homeMenu {
-	background: rgb(229,222,196);
-	width: 42.3em;
-	margin: 0 auto;
-	overflow: auto;
-	border-radius: 0.2em;
-}
-.homeMenuSide {
-	width: 20em;
-	min-height: 10em;
-	background: rgb(250,245,239);
-	display: inline-block;
-	margin: 1em 0.5em 1em 0.5em;
-	position: relative;
-}
-.homeMenu h3 {
-	
-}
-.menuCorner {
-	width: 1em;
-	height: 1em;
-	position: absolute;
-	background: rgb(229,222,196);
-}
-.topLeftMenuCorner {
-	top: 0;
-	left: 0;
-	border-bottom-right-radius: 1em;
-}
-.topRightMenuCorner {
-	top: 0;
-	right: 0;
-	border-bottom-left-radius: 1em;
-}
-.bottomLeftMenuCorner {
-	bottom: 0;
-	left: 0;
-	border-top-right-radius: 1em;
-}
-.bottomRightMenuCorner {
-	bottom: 0;
-	right: 0;
-	border-top-left-radius: 1em;
 }

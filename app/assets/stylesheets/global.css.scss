@@ -37,8 +37,18 @@ button{
 .right {
 	float: right !important;
 }
+.center {
+	margin: 0 auto;
+	display: block;
+}
 .text-center {
 	text-align: center;
+}
+.text-smaller {
+	font-size: smaller;
+}
+.hoverLine:hover {
+	text-decoration: underline;
 }
 .hidden {
 	display: none !important;

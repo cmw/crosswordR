@@ -41,34 +41,64 @@
 }
 
 .homeFolderItem {
-	border: 1px dashed grey;
+	padding: 0.3em 0.5em;
+	position: relative;
+	height: 1.2em;
 }
 .homeFolderItem.published{
-	background-color: rgb(180,255,180);
+	//background-color: rgb(180,255,180);
+	background: inherit;
 }
 .homeFolderItem.unpublished{
-	background-color: rgb(255,255,180);
+	//background-color: rgb(255,255,180);
+	background: inherit;
+}
+.homeFolderItem .homeFolderItemPart {
+	display: inline-block;
+	overflow: hidden;
+	background: inherit;
+	position: absolute;
+	max-width: 7.7em;
+	padding-left: 0.2em;
+	padding-right: 0.3em;
+	max-height: 1.2em;
+	word-breal: break-all;
+}
+span.homeFolderItemPart.dimPart {
+	left: 12em;
+	width: 2.5em;
+	text-align: center;
+}
+span.homeFolderItemPart.datePart {
+	left: 16em;
 }
 
 .homeMenu {
 	background: rgb(229,222,196);
-	width: 50.3em;
+	width: 53.7em;
 	margin: 1.5em auto 0 auto;
 	overflow: auto;
 	border-radius: 0.2em;
 	position: relative;
+	min-height: 13em;
 }
-.homeMenuSide {
-	width: 23em;
+.homeMenuFold {
 	min-height: 10em;
 	background: rgb(250,245,239);
 	margin: 1em 0.5em 1em 0.5em;
 	position: relative;
 	float: left;
-	padding: 0.5em;
+	padding: 0.5em 0.5em 1.4em 0.5em;
+}
+.homeMenuFold.sideFold {
+	width: 12em;
+}
+.homeMenuFold.midFold {
+	width: 23em;
 }
 .homeMenu h3 {
-	
+	position: relative;
+	margin-bottom: 0em;
 }
 .menuCorner {
 	width: 1em;
@@ -95,4 +125,41 @@
 	bottom: 0;
 	right: 0;
 	border-top-left-radius: 1em;
+}
+.editView {
+	position: relative;
+	background: inherit;
+	padding: 0 0.3em;
+	margin-left: 0.1em;
+	font-weight: bold;
+}
+.menuSection {
+	background: inherit;
+	max-height: 8em;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	border: 1px solid rgb(250,245,239);
+	margin-bottom: 1em;
+}
+.menuSection:hover {
+	border: 1px dashed black;
+}
+.menuCrease {
+	width: 1px;
+	min-height: 100%;
+	overflow: auto;
+	height: 20.8em;
+	background: grey;
+	float: left;
+	margin: 0.2em 0;
+}
+.menuDots {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: inherit;
+	line-height: 1.6em;
+	margin-left: 0.8em;
+	overflow: hidden;
+	max-width: 21em;
 }
