@@ -12,14 +12,14 @@
 
 				<% if current_user.crossword_solutions_count > 0 %>
 					<% current_user.crossword_solutions.all(:order => 'updated_at DESC').each do |sol| %>
-						<div>
-							<%= link_to sol.crossword_puzzle.title, edit_crossword_puzzle_path(sol.crossword_puzzle), :class=> "hoverLine"%> by <%= link_to sol.crossword_puzzle.user.username, sol.crossword_puzzle.user, :class => 'hoverLine' %>
+						<div class="text-smaller">
+							<%= sol.completion_percentage %>% <%= link_to sol.crossword_puzzle.title, edit_crossword_puzzle_path(sol.crossword_puzzle), :class=> "hoverLine"%> by <%= link_to sol.crossword_puzzle.user.username, sol.crossword_puzzle.user, :class => 'hoverLine' %>
 						</div>
 					<% end %>
 				<% else %>
 					<p class="text-center text-smaller">You haven't started any puzzles yet!</p>
-					<%= link_to "Random Puzzle", current_user.rand_unowned_puzzle, :class => "text-center block center" %>
-					<%= link_to "Puzzle of the Day", CrosswordPuzzle.find(1), :class => "text-center block center"  %>
+					<%= link_to "Random Puzzle", current_user.rand_unowned_puzzle, :class => "text-center block center hoverLine" %>
+					<%= link_to "Puzzle of the Day", CrosswordPuzzle.find(1), :class => "text-center block center hoverLine"  %>
 				<% end %>
 
 			<div class="bottomLeftMenuCorner menuCorner"></div>
