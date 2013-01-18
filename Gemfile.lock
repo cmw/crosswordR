@@ -119,6 +119,7 @@ DEPENDENCIES
   bcrypt-ruby
   coffee-rails (~> 3.2.1)
   jquery-rails
+  mail (~> 2.4.4)
   pg
   rails (= 3.2.9)
   sass-rails (~> 3.2.3)
