@@ -71,7 +71,7 @@ class CrosswordPuzzlesController < ApplicationController
   def update
     respond_to do |format|
       if @crossword_puzzle.update_attributes(params[:crossword_puzzle])
-        format.html { redirect_to edit_crossword_puzzle_path(@crossword_puzzle), notice: 'Puzzle saved.' }
+        format.html { redirect_to edit_crossword_puzzle_path(@crossword_puzzle), notice: 'Puzzle saved!' }
         format.json { head :no_content }
       else
         format.html { render action: "edit", notice: 'Error while saving.' }

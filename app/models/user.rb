@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
   end
   
   def has_published
-  	return self.crossword_puzzles.where(:published => true).count > 0
+  	return self.crossword_puzzles.where(:published => true).exists?
   end
 
   def encrypt_password

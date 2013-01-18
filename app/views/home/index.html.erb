@@ -10,11 +10,22 @@
 			<h3>Solutions</h3>
 			<%= image_tag "/assets/advBracket.png", :alt => "Fancy Bracket", :width => "100em", :class => "center" %>
 
-				<% if current_user.crossword_solutions_count > 0 %>
-					<% current_user.crossword_solutions.all(:order => 'updated_at DESC').each do |sol| %>
-						<div class="text-smaller">
-							<%= sol.completion_percentage %>% <%= link_to sol.crossword_puzzle.title, edit_crossword_puzzle_path(sol.crossword_puzzle), :class=> "hoverLine"%> by <%= link_to sol.crossword_puzzle.user.username, sol.crossword_puzzle.user, :class => 'hoverLine' %>
-						</div>
+				<% if current_user.crossword_solutions.exists? %>
+					<% if current_user.crossword_solutions.where(:solution_complete => false).exists? %>
+						<h5>In the Works</h5>
+						<% current_user.crossword_solutions.all(:order => 'updated_at DESC', :order => 'updated_at DESC').each do |sol| %>
+							<div class="text-smaller">
+								<%= link_to sol.crossword_puzzle.title, edit_crossword_puzzle_path(sol.crossword_puzzle), :class=> "hoverLine"%> - <%= sol.completion_percentage %>%
+							</div>
+						<% end %>
+					<% end %>
+					<% if current_user.crossword_solutions.where(:solution_complete => true).exists? %>
+						<h5>Complete</h5>
+						<% current_user.crossword_solutions.where(:solution_complete => true, :order => 'updated_at DESC').each do |sol| %>
+							<div class="text-smaller">
+								<%= link_to sol.crossword_puzzle.title, edit_crossword_puzzle_path(sol.crossword_puzzle), :class=> "hoverLine"%> - <%= sol.completion_percentage %>%
+							</div>
+						<% end %>
 					<% end %>
 				<% else %>
 					<p class="text-center text-smaller">You haven't started any puzzles yet!</p>
@@ -34,8 +45,8 @@
 			<h3>Puzzles</h3>
 			<%= image_tag "/assets/advBracket.png", :alt => "Fancy Bracket", :width => "100em", :class => "center" %>
 
-				<% if current_user.crossword_puzzles_count > 0 %>
-						<% if current_user.crossword_puzzles.where(:published => false).count > 0 %>
+				<% if current_user.crossword_puzzles.exists? %>
+						<% if current_user.crossword_puzzles.where(:published => false).exists? %>
 							<h5>Unpublished</h5>
 							<div class="menuSection text-smaller">
 								<% current_user.crossword_puzzles.where(:published => false).order('updated_at DESC').each do |puz| %>
@@ -51,7 +62,7 @@
 							</div>
 						<% end %>
 						
-						<% if current_user.crossword_puzzles.where(:published => true).count > 0 %>
+						<% if current_user.crossword_puzzles.where(:published => true).exists? %>
 							<h5>Published</h5>
 							<div class="menuSection text-smaller">
 								<% current_user.crossword_puzzles.where(:published => true).order('updated_at DESC').each do |puz| %>

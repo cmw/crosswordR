@@ -25,7 +25,7 @@ function inputVoids(voidArray){
 	}
 }
 
-function inputLetters(letterArray){
+function inputLetterArray(letterArray){
 	if(Object.prototype.toString.call(letterArray) === '[object String]'){
 		letterArray = removeBrackets(letterArray).split(',');
 	}

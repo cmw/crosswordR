@@ -11,12 +11,8 @@
 			for(var i = 0; i< letterVoidString.length; i++){
 				if(letterVoidString[i] == '_'){
 					loadedVoids.push(i);
-					loadedLetters.push('_');
-				} else if (letterVoidString[i] == ' '){
-					loadedLetters.push(' ');
-				} else{
-					loadedLetters.push(letterVoidString[i]);
-				}
+				} 
+				loadedLetters.push(letterVoidString[i]);
 			}
 			currentCrossword = new Crossword(loadedVoids, loadedLetters, []);
 		/*
@@ -38,6 +34,7 @@
 			$(".cell").on('dblclick', function() {
 				$(this).val('');
 				toggleVoid($(this));
+				updateHiddenLetters();
 			});
 			
 			//When the user hovers or focuses a cell, its clues are dynamically displayed and it is highlighted
@@ -119,8 +116,8 @@
 						break;
 						
 				}
-				//There must be a better way to update the hiddenLetters field
-				//window.setTimeout (function(){updateHiddenLetters();},1);
+				
+				window.setTimeout (function(){updateHiddenLetters();},1);
 			});
 			$('#wordsToUseBar input[type=text]').on('keydown',function(event){
 				switch (event.which) {
@@ -191,7 +188,7 @@
 			});
 			
 				inputVoids(currentCrossword.voids);
-				inputLetters(currentCrossword.letters);
+				inputLetterArray(currentCrossword.letters);
 				numberCells();
 			
 		});
@@ -271,7 +268,7 @@
 			</div>
 		</div>
 		
-		<%= render 'formPuzzle' %>
+		<%= render 'formPuzzleEdit' %>
 	</div>
 	<!--<div id="notes"></div>-->
 	<div id="wordsToUseBar" class="draggable shadow">

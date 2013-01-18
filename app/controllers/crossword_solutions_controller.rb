@@ -48,6 +48,14 @@ class CrosswordSolutionsController < ApplicationController
   def create
     @crossword_solution = CrosswordSolution.new(params[:crossword_solution])
 
+    if !@crossword_solution.user && current_user
+      @crossword_solution.user = current_user
+    end
+
+    if !@crossword_solution.crossword_puzzle && @crossword_puzzle
+      @crossword_solution.crossword_puzzle = @crossword_puzzle
+    end
+
     respond_to do |format|
       if @crossword_solution.save
         format.html { redirect_to @crossword_solution, notice: 'Crossword solution was successfully created.' }
@@ -64,7 +72,7 @@ class CrosswordSolutionsController < ApplicationController
   def update
     respond_to do |format|
       if @crossword_solution.update_attributes(params[:crossword_solution])
-        format.html { redirect_to @crossword_solution, notice: 'Crossword solution was successfully updated.' }
+        format.html { redirect_to crossword_puzzle_path(@crossword_solution.crossword_puzzle), notice: 'Solution saved!' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

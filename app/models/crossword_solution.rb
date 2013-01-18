@@ -4,6 +4,11 @@ class CrosswordSolution < ActiveRecord::Base
 	
  	attr_accessible :crossword_puzzle_id, :solution_complete, :solution_letters, :user_id
 
+ 	validates :user_id,
+ 		:presence => true,
+ 		:uniqueness => {:scope => :crossword_puzzle_id}
+
+
  	def completion_percentage
  		sol_letters = self.solution_letters.gsub("_","")
  		puz_letters = self.crossword_puzzle.letters.gsub("_","")
