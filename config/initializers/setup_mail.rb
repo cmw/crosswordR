@@ -3,7 +3,7 @@ ActionMailer::Base.smtp_settings ={
   :port                 => 587,
   :domain               => 'crossword-cafe.com',
   :user_name            => 'info@crossword-cafe.com',
-  :password             => 'ZG9zaGVhGM',
+  :password             => 'cafepassword',
   :authentication       => 'plain',
   :enable_starttls_auto => true
 }
