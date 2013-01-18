@@ -10,8 +10,8 @@ class CrosswordSolution < ActiveRecord::Base
 
 
  	def completion_percentage
- 		sol_letters = self.solution_letters.gsub("_","")
- 		puz_letters = self.crossword_puzzle.letters.gsub("_","")
+ 		sol_letters = self.solution_letters.gsub("_","").gsub(" ","")
+ 		puz_letters = self.crossword_puzzle.letters.gsub("_","").gsub(" ","")
  		return ((sol_letters.length.to_f)/(puz_letters.length.to_f)*100).round(1)
  	end
 

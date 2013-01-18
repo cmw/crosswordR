@@ -15,7 +15,7 @@
 						<h5>In the Works</h5>
 						<% current_user.crossword_solutions.all(:order => 'updated_at DESC', :order => 'updated_at DESC').each do |sol| %>
 							<div class="text-smaller">
-								<%= link_to sol.crossword_puzzle.title, edit_crossword_puzzle_path(sol.crossword_puzzle), :class=> "hoverLine"%> - <%= sol.completion_percentage %>%
+								<%= link_to sol.crossword_puzzle.title, crossword_puzzle_path(sol.crossword_puzzle), :class=> "hoverLine"%> - <%= sol.completion_percentage %>%
 							</div>
 						<% end %>
 					<% end %>
@@ -23,7 +23,7 @@
 						<h5>Complete</h5>
 						<% current_user.crossword_solutions.where(:solution_complete => true, :order => 'updated_at DESC').each do |sol| %>
 							<div class="text-smaller">
-								<%= link_to sol.crossword_puzzle.title, edit_crossword_puzzle_path(sol.crossword_puzzle), :class=> "hoverLine"%> - <%= sol.completion_percentage %>%
+								<%= link_to sol.crossword_puzzle.title, crossword_puzzle_path(sol.crossword_puzzle), :class=> "hoverLine"%> - <%= sol.completion_percentage %>%
 							</div>
 						<% end %>
 					<% end %>
