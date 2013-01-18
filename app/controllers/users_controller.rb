@@ -41,7 +41,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
 
-    unless current_user && ( (current_user == @user) || current_user[:admin] )
+    unless logged_in? && ( (current_user == @user) || admin? )
       redirect_to root_url, :notice => "Sorry, you can't edit other users"
     end
 
@@ -53,7 +53,8 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
 	if @user.save
-		if current_user
+    UserMailer.welcome_email(@user).deliver
+		if logged_in?
 			redirect_to users_path, :notice => "User created!"
 		else
 			session[:user_id] = @user.id
