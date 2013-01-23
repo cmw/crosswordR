@@ -7,7 +7,9 @@
 			<%= link_to "<b><u>Edit Puzzle</u></b>".html_safe, edit_crossword_puzzle_path(@crossword_puzzle) %>
 		</div>
 	<% end %>
-	<% @crossword_solution = CrosswordSolution.find_or_create_by_user_id_and_crossword_puzzle_id(current_user.id, @crossword_puzzle.id) %>
+	<% if logged_in? %>
+		<% @crossword_solution = CrosswordSolution.find_or_create_by_user_id_and_crossword_puzzle_id(current_user.id, @crossword_puzzle.id) %>
+	<% end %>
 	<script type="text/javascript">
 			numRows = <%= @crossword_puzzle.rows %>;
 			numCols = <%= @crossword_puzzle.cols %>;
@@ -15,7 +17,7 @@
 			var loadedVoids = [];
 			var letterVoidString = '<%= @crossword_puzzle.letters %>';
 			var solutionLetters = [];
-			var solutionString = '<%= @crossword_solution.solution_letters %>';
+			
 			for(var i = 0; i< letterVoidString.length; i++){
 				if(letterVoidString[i] == '_'){
 					loadedVoids.push(i);
@@ -26,9 +28,12 @@
 					loadedLetters.push(letterVoidString[i]);
 				}
 			}
-			for(var i = 0; i< solutionString.length; i++){
-				solutionLetters.push(solutionString[i]);
-			}
+			<% if @crossword_solution %>
+				var solutionString = '<%= @crossword_solution.solution_letters %>';
+				for(var i = 0; i< solutionString.length; i++){
+					solutionLetters.push(solutionString[i]);
+				}
+			<% end %>
 
 			currentCrossword = new Crossword(loadedVoids, loadedLetters, []);
 	
@@ -169,16 +174,16 @@
 							<p class="clueP curD" id="downP">???</p>
 						</div>
 					</div>
-					<div id="results" class="solveTools">
-						<input type="button" value="Show Incorrect" id="showIncorrect" onclick="showIncorrect();"/>
+					<div id="results" class="solveTools shadow">
+						<% if @crossword_solution %>
+							<%= render 'formPuzzleShow' %>
+						<% end %>
+						<input type="button" class="showButton" value="Show Incorrect" id="showIncorrect" onclick="showIncorrect();"/>
 						<div id='cheatResult'></div>
-						<input type="button" value="Cheat!" id="cheat" onclick="cheat();"/>
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<%= render 'formPuzzleShow' %>
 
 		<% if logged_in? && admin? %>
 			<p id="notice"><%= notice %></p>

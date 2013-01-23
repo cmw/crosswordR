@@ -11,17 +11,17 @@
 			<%= image_tag "/assets/advBracket.png", :alt => "Fancy Bracket", :width => "100em", :class => "center" %>
 
 				<% if current_user.crossword_solutions.exists? %>
-					<% if current_user.crossword_solutions.where(:solution_complete => false).exists? %>
+					<% if current_user.crossword_solutions.incomplete.exists? %>
 						<h5>In the Works</h5>
-						<% current_user.crossword_solutions.all(:order => 'updated_at DESC', :order => 'updated_at DESC').each do |sol| %>
+						<% current_user.crossword_solutions.incomplete.order_recent.each do |sol| %>
 							<div class="text-smaller">
 								<%= link_to sol.crossword_puzzle.title, crossword_puzzle_path(sol.crossword_puzzle), :class=> "hoverLine"%> - <%= sol.completion_percentage %>%
 							</div>
 						<% end %>
 					<% end %>
-					<% if current_user.crossword_solutions.where(:solution_complete => true).exists? %>
+					<% if current_user.crossword_solutions.complete.exists? %>
 						<h5>Complete</h5>
-						<% current_user.crossword_solutions.where(:solution_complete => true, :order => 'updated_at DESC').each do |sol| %>
+						<% current_user.crossword_solutions.complete.order_recent.each do |sol| %>
 							<div class="text-smaller">
 								<%= link_to sol.crossword_puzzle.title, crossword_puzzle_path(sol.crossword_puzzle), :class=> "hoverLine"%> - <%= sol.completion_percentage %>%
 							</div>
@@ -45,11 +45,11 @@
 			<h3>Puzzles</h3>
 			<%= image_tag "/assets/advBracket.png", :alt => "Fancy Bracket", :width => "100em", :class => "center" %>
 
-				<% if current_user.crossword_puzzles.exists? %>
-						<% if current_user.crossword_puzzles.where(:published => false).exists? %>
+				<% if current_user.crossword_puzzles %>
+						<% if current_user.crossword_puzzles.unpublished.exists? %>
 							<h5>Unpublished</h5>
 							<div class="menuSection text-smaller">
-								<% current_user.crossword_puzzles.where(:published => false).order('updated_at DESC').each do |puz| %>
+								<% current_user.crossword_puzzles.unpublished.order_recent.each do |puz| %>
 								<div class="homeFolderItem unpublished">
 									<span class="menuDots">...........................................................................................................................</span>
 									<%= link_to puz.title, crossword_puzzle_path(puz), :class => "homeFolderItemPart hoverLine" %>
@@ -62,10 +62,10 @@
 							</div>
 						<% end %>
 						
-						<% if current_user.crossword_puzzles.where(:published => true).exists? %>
+						<% if current_user.crossword_puzzles.published.exists? %>
 							<h5>Published</h5>
 							<div class="menuSection text-smaller">
-								<% current_user.crossword_puzzles.where(:published => true).order('updated_at DESC').each do |puz| %>
+								<% current_user.crossword_puzzles.published.order_recent.each do |puz| %>
 								<div class="homeFolderItem published">
 									<span class="menuDots">..........................................................................................................................................</span>
 									<%= link_to puz.title, crossword_puzzle_path(puz), :class => "homeFolderItemPart hoverLine" %>
@@ -96,14 +96,14 @@
 			<br />
 			<h5>Solutions</h5>
 			<p class="text-smaller">
-				In the works: <%= current_user.crossword_solutions.where(:solution_complete => false).count %><br />
-				Finished: <%= current_user.crossword_solutions.where(:solution_complete => true).count %><br />
+				In the works: <%= current_user.crossword_solutions.incomplete.count %><br />
+				Finished: <%= current_user.crossword_solutions.complete.count %><br />
 				Total: <%= current_user.crossword_solutions_count %>
 			</p>
 			<h5>Puzzles</h5>
 			<p class="text-smaller">
-				In the works: <%= current_user.crossword_puzzles.where(:published => false).count %><br />
-				Finished: <%= current_user.crossword_puzzles.where(:published => true).count %><br />
+				In the works: <%= current_user.crossword_puzzles.unpublished.count %><br />
+				Finished: <%= current_user.crossword_puzzles.published.count %><br />
 				Total: <%= current_user.crossword_puzzles_count %>
 			</p>
 

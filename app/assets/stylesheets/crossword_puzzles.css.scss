@@ -520,3 +520,13 @@ img#admin-only {
 .under-dash {
 	border-bottom: 1px dashed #333;
 }
+.showButton {
+	font-weight: bold;
+	font-size: 0.9em;
+	float: left;
+	display: block;
+	background: rgba(146,238,131,0.4);
+}
+input[type='button'].showButton {
+	background: rgba(255, 166, 0, 0.5);
+}

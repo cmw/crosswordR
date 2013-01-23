@@ -72,7 +72,7 @@
 								<div class="leftNav"></div>
 								<ul class="leftMenu">
 								
-									<% user.crossword_puzzles.where(:published => true).each do |a_puzzle| %>
+									<% user.crossword_puzzles.published.each do |a_puzzle| %>
 											<% puzzle_list_item = '<li>'+a_puzzle.title.split(" ")[0][0,13]+'</li>' %>
 											<%= link_to puzzle_list_item.html_safe, a_puzzle %>
 									<% end %>

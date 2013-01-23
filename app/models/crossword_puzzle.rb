@@ -26,5 +26,8 @@ class CrosswordPuzzle < ActiveRecord::Base
   	:presence => true,
   	:length => { :minimum => MIN_TITLE_LENGTH, :maximum => MAX_TITLE_LENGTH, :message => ": Must be #{MIN_TITLE_LENGTH}-#{MAX_TITLE_LENGTH} characters long"}
 
+  scope :published, where(:published)
+  scope :unpublished, where(!:published)
+  scope :order_recent, order('updated_at DESC')
 
 end
