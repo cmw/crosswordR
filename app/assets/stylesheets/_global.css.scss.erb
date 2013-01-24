@@ -1,13 +1,21 @@
 // Place all global styles here.
 // They will automatically be included in application.css.
 
+//Mixins
+@mixin corner($side1, $side2, $pad1, $pad2){
+	position: absolute;
+	#{$side1}: #{$pad1};
+	#{$side2}: #{$pad2};
+}
+
 /* Ubiquitous Elements */
 a {
-		text-decoration: none;
+	text-decoration: none;
+	color: inherit;
+
+	&:visited {
 		color: inherit;
-}
-a:visited {
-		color: inherit;
+	}
 }
 
 hr {
@@ -53,6 +61,9 @@ button{
 .hoverLine:hover {
 	text-decoration: underline;
 }
+.under-dash {
+	border-bottom: 1px dashed #333;
+}
 .hidden {
 	display: none !important;
 }
@@ -79,6 +90,14 @@ input[type='checkbox'] {
 }
 .bold {
 	font-weight: bold;
+}
+
+// Lists
+ul.list-circle, ol.list-circle {
+	list-style-type: circle;
+}
+ul.list-disc, ol.list-disc {
+	list-style-type: disc;
 }
 
 /* Specific Classes */
@@ -149,4 +168,36 @@ body {
 	text-align: center;
 	background: url(/assets/crosswordPaper.jpeg);
 	padding: 0em 1em 0.4em 1em;
+	position: relative;
+
+	.closeBox {
+		@include corner(bottom,right,0.25em,0.3em);
+	}
 }
+
+.adminContainer {
+	background: #DDD;
+	border-top: 2px solid #333;
+	max-width: inherit;
+	position: relative;
+	padding-bottom: 2em;
+	margin-top: 2em;
+
+	p {
+		word-break: break-all;
+	}
+
+	.closeBox {
+		@include corner(top,right,0.25em,0.3em);
+	}
+}
+.closeBox {
+	padding: 0.15em 0.3em;
+	border: 1px solid #555;
+	border-radius: 1em;
+	text-align: center;
+	line-height: 0.8em;
+	color: #555;
+	font-size: small;
+}
+

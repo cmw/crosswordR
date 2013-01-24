@@ -27,11 +27,12 @@
 	margin: auto;
 	height: 100%;
 	position: relative;
-}
-#crossHeaderContainer img {
-	margin: 4px 0em 4px 1em;
-	padding: 0 1em;
-	float: left;
+
+	img {
+		margin: 4px 0em 4px 1em;
+		padding: 0 1em;
+		float: left;
+	}
 }
 nav.headerNav {
 	height: 100%;
@@ -43,6 +44,47 @@ nav.headerNav {
 	font-size: 12px;
 	padding: 0;
 	position: relative;
+
+	div {
+		height: 100%;
+		position: relative;
+		float: inherit;
+		padding: 0 1em;
+
+		&:hover {
+			background-color: rgba(255,255,255,0.1);
+		}
+
+		ul{
+			position: absolute;
+			z-index: 1;
+			list-style-type: none;
+			width: 100%;
+			padding: 0;
+			background-color: rgba(25,25,25,0.9);
+
+			li{
+				text-align: center;
+				height: 2em;
+				line-height: 2em;
+				font-size: 11px;
+
+				&:hover{
+					background-color: rgba(255,255,255,0.1);
+				}
+
+				&:nth-child(3){
+					border-radius: inherit;
+					border-bottom: 0px;
+				}
+			}
+		}
+	}
+
+	a {
+	 	overflow: auto;
+	 	float: inherit;
+	}
 }
 #headQuote {
 	margin: 1em 2em;
@@ -56,27 +98,7 @@ nav.headerNav {
 	line-height: 3.375em;
 	background:url(<%= asset_path('headQuote.png') %>) no-repeat;				
 }
-nav.headerNav div {
-	height: 100%;
-	position: relative;
-	float: inherit;
-	padding: 0 1em;
-}
- nav.headerNav a {
- 	overflow: auto;
- 	float: inherit;
- }
-nav.headerNav div:hover {
-	background-color: rgba(255,255,255,0.1);
-}
-nav.headerNav div ul{
-	position: absolute;
-	z-index: 1;
-	list-style-type: none;
-	width: 100%;
-	padding: 0;
-	background-color: rgba(25,25,25,0.9);
-}
+
 .dropMenu {
 	left: 0em;
 	top: 3.5em;
@@ -92,19 +114,14 @@ nav.headerNav div ul{
 }
 ul.leftMenu {
 	border-radius: 0.75em 0 0 0.75em;
-}
-ul.leftMenu li:last-child {
-	border-bottom: 0;
+
+	li:last-child {
+		border-bottom: 0;
+	}
 }
 
 ul.dropMenu li, ul.leftMenu li {
 	position: relative;
-}
-nav.headerNav div ul li{
-	text-align: center;
-	height: 2em;
-	line-height: 2em;
-	font-size: 11px;
 }
 nav.headerNav div.promote {
 	background-color: rgba(255,255,255,0.2);
@@ -115,13 +132,7 @@ nav.headerNav div ul.dropMenu > li:last-child{
 nav.headerNav div ul.dropMenu > li:nth-child(1){
 	border-top: 1px solid #444;
 }
-nav.headerNav div ul li:nth-child(3){
-	border-radius: inherit;
-	border-bottom: 0px;
-}
-nav.headerNav div ul li:hover{
-	background-color: rgba(255,255,255,0.1);
-}
+
 .headerSpacer {
 	height: 100%;
 	max-width: 1px;

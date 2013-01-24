@@ -37,12 +37,14 @@
 			<% end %>
 		</div>
 		<% if admin? %>
-			<h1>New crossword_puzzle</h1>
-			
-			<%= render 'form' %>
-			
-			<%= link_to 'Back', crossword_puzzles_path %>
-			
+			<div class="adminContainer">
+				<h1>New crossword_puzzle</h1>
+				
+				<%= render 'form' %>
+				
+				<%= link_to 'Back', crossword_puzzles_path %>
+				<a href="#" class="closeBox closeUp">x</a>
+			</div>
 		<% end %>
 	
 <% else %>

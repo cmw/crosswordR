@@ -13,19 +13,23 @@
 				<% if current_user.crossword_solutions.exists? %>
 					<% if current_user.crossword_solutions.incomplete.exists? %>
 						<h5>In the Works</h5>
-						<% current_user.crossword_solutions.incomplete.order_recent.each do |sol| %>
-							<div class="text-smaller">
-								<%= link_to sol.crossword_puzzle.title, crossword_puzzle_path(sol.crossword_puzzle), :class=> "hoverLine"%> - <%= sol.completion_percentage %>%
-							</div>
-						<% end %>
+						<ul class='list-circle'>
+							<% current_user.crossword_solutions.incomplete.order_recent.each do |sol| %>
+								<li><div class="text-smaller">
+									<%= link_to sol.crossword_puzzle.title, crossword_puzzle_path(sol.crossword_puzzle), :class=> "hoverLine"%> - <%= sol.completion_percentage %>%
+								</div></li>
+							<% end %>
+						</ul>
 					<% end %>
 					<% if current_user.crossword_solutions.complete.exists? %>
 						<h5>Complete</h5>
-						<% current_user.crossword_solutions.complete.order_recent.each do |sol| %>
-							<div class="text-smaller">
-								<%= link_to sol.crossword_puzzle.title, crossword_puzzle_path(sol.crossword_puzzle), :class=> "hoverLine"%> - <%= sol.completion_percentage %>%
-							</div>
-						<% end %>
+						<ul class='list-disc'>
+							<% current_user.crossword_solutions.complete.order_recent.each do |sol| %>
+								<li><div class="text-smaller">
+									<%= link_to sol.crossword_puzzle.title, crossword_puzzle_path(sol.crossword_puzzle), :class=> "hoverLine"%> - <%= sol.completion_percentage %>%
+								</div></li>
+							<% end %>
+						</ul>
 					<% end %>
 				<% else %>
 					<p class="text-center text-smaller">You haven't started any puzzles yet!</p>

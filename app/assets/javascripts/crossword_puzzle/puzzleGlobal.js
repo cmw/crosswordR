@@ -438,14 +438,12 @@ function loadCrossword(crossword){
 	currentCrossword = crossword;
 	inputClues(crossword.clues);
 	updateStats();
-	solveMode();
 }
 function newCrossword(){
 	clearCells(); 
 	clearClues(); 
 	currentCrossword=new Crossword([],[],[]); 
 	clearCredits();
-	editMode();
 }
 function updateHiddenLetters(){
 	$('#hiddenLetters').val(outputLetterVoids());

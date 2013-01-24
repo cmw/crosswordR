@@ -6,16 +6,20 @@ class User < ActiveRecord::Base
   attr_accessor :password
   before_save :encrypt_password
   after_create :weclome_email
-  
-  validates_confirmation_of :password
-  validates_presence_of :password, :on => :create
+
+  MIN_PASSWORD_LENGTH = 5
+  MAX_PASSWORD_LENGTH = 16
+  validates :password,
+    :presence => true,
+    :confirmation => true,
+    :length => { :minimum => MIN_PASSWORD_LENGTH, :maximum => MAX_PASSWORD_LENGTH, :message => ": Should be #{MIN_PASSWORD_LENGTH}-#{MAX_PASSWORD_LENGTH} characters" }
   
   MAX_EMAIL_LENGTH = 25
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email,
   	:presence => true,
   	:uniqueness => true,
-  	:length => { :maximum => MAX_EMAIL_LENGTH, :message => "That's just too long. Your email shouldn't be above #{MAX_EMAIL_LENGTH} characters" },
+  	:length => { :maximum => MAX_EMAIL_LENGTH, :message => ": That's just too long. Your email shouldn't be above #{MAX_EMAIL_LENGTH} characters" },
    	:format => { with: VALID_EMAIL_REGEX, :message => ": Only real email addresses, please" } 
   
   MAX_USERNAME_LENGTH = 12

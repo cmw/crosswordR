@@ -1,15 +1,14 @@
 <% title "Edit Profile" %>
 <% if logged_in? %>
-	<% if admin? %>
-		<h1>Editing user</h1>
-		
+	<% if current_user == @user %>
+		<h1>Account Info</h1>
 		<%= render 'form' %>
+	<% end %>
+	<% if admin? %>		
+		<%= render 'admin_form' %>
+	<% end %>
 		
-		<%= link_to 'Show', @user %> |
-		<%= link_to 'Back', users_path %>
-	<% elsif current_user == @user %>
-		<%= render 'form' %>
-	<% else %>
+	<% if !((current_user == @user) || admin?) %>
 		Sorry, you can't edit other users' profiles
 	<% end %>
 <% else %>

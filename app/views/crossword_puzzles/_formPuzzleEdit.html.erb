@@ -15,7 +15,7 @@
     <%= f.text_field :letters , :id => 'hiddenLetters' %>
   </div>
   <div class="actions">
-    <%= f.submit 'Save Changes', :class => 'editButton', :onclick => 'console.log("YAY!"); updateHiddenLetters();' %>
+    <%= f.submit 'Save Changes', :class => 'editButton', :onclick => 'updateHiddenLetters();' %>
   </div>
 <% end %>
  <%= button_to "Delete", crossword_puzzle_path(@crossword_puzzle), :class => 'editButton', method: :delete, data: { confirm: 'Are you sure you want to delete your puzzle? Deletion is permanent...' } %>
