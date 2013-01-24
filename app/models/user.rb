@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 	
   attr_accessor :password
   before_save :encrypt_password
+  after_create :weclome_email
   
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
@@ -42,6 +43,28 @@ class User < ActiveRecord::Base
   	  nil
   	end
   end
+
+  def full_name
+    if either_name?
+      if both_names?
+        return self.first_name + " " + self.last_name
+      elsif self.first_name?
+        return self.first_name
+      else
+        return self.last_name
+      end
+    else
+      return self.username
+    end
+  end
+
+  def either_name?
+    return (self.first_name? || self.last_name?)
+  end
+
+  def both_names?
+    return (self.first_name? && self.last_name?)
+  end
   
   def has_published
   	return self.crossword_puzzles.published.exists?
@@ -60,6 +83,10 @@ class User < ActiveRecord::Base
 
   def rand_unowned_puzzle
     CrosswordPuzzle.where('user_id != ?', self.id).order("RANDOM()").first
+  end
+
+  def welcome_email
+    UserMailer.welcome_email(self).deliver
   end
   
 end

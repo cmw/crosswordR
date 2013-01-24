@@ -53,7 +53,6 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
 	if @user.save
-    UserMailer.welcome_email(@user).deliver
 		if current_user
 			redirect_to users_path, :notice => "User created!"
 		else

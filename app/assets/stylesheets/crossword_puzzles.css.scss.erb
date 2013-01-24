@@ -12,7 +12,7 @@
 #leftControls {
 	height: 26.25em;
 	width: 10.94em;
-	background: url(/assets/clothNapkin.png);
+	background: url(<%= asset_path('clothNapkin.png') %>);
 	border-radius: 2px;
 	padding: 0.25em 0.5em;
 	position: relative;
@@ -95,7 +95,7 @@
 	overflow: auto;
 	clear: none;
 	margin: 0em 1.5em 0 1.5em;
-	background: url(/assets/crosswordPaper.jpeg);
+	background: url(<%= asset_path('crosswordPaper.jpeg') %>);
 	position: relative;
 	display: inline-block;
 }
@@ -266,7 +266,7 @@ input.void {
 	overflow: auto;
 	position: relative;
 	min-height: 280px;
-	background: url(/assets/dish.png);
+	background: url(<%= asset_path('dish.png') %>);
 }
 #clueHolder {
 	margin-top: 3em;
@@ -456,7 +456,7 @@ input.void {
 }
 */
 #notes {
-	background: url(/assets/notePaper.png);
+	background: url(<%= asset_path('notePaper.png') %>);
 	position: absolute;
 	width: 51.96em;
 	height: 10em;
@@ -494,7 +494,7 @@ img#admin-only {
 	margin: 1em auto 0 auto;
 	max-width: 15em;
 	text-align: center;
-	background: url(/assets/crosswordPaper.jpeg);
+	background: url(<%= asset_path('crosswordPaper.jpeg') %>);
 	padding: 0.5em 1em;
 }
 .newPuzzleUser p {
