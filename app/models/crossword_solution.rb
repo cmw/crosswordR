@@ -21,8 +21,8 @@ class CrosswordSolution < ActiveRecord::Base
  		return ((sol_letters.length.to_f)/(puz_letters.length.to_f)*100).round(1)
  	end
 
-	scope :complete, where(:solution_complete)
-	scope :incomplete, where(!:solution_complete)
+	scope :complete, where(:solution_complete => true)
+	scope :incomplete, where(:solution_complete => false)
 	scope :order_recent, order('updated_at DESC')
 
 
