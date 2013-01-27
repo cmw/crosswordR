@@ -18,7 +18,8 @@
 		</tr>
 	
 	<% @crossword_puzzles.each do |crossword_puzzle| %>
-		<tr class="block limited">
+		
+		<%= content_tag_for(:tr, crossword_puzzle, :class => 'block limited') do %>
 			<td class="limited"><%= crossword_puzzle.title %></td>
 			<td class="limited"><%= crossword_puzzle.user_id %></td>
 			<td class="limited"><%= crossword_puzzle.rows %></td>
@@ -27,8 +28,8 @@
 			<td class="limited"><%= crossword_puzzle.letters %></td>
 			<td class="limited"><%= link_to 'Show', crossword_puzzle %></td>
 			<td class="limited"><%= link_to 'Edit', edit_crossword_puzzle_path(crossword_puzzle) %></td>
-			<td class="limited"><%= link_to 'Destroy', crossword_puzzle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-		</tr>
+			<td class="limited"><%= link_to 'Destroy', crossword_puzzle, method: :delete, data: { confirm: 'Are you sure?' }, :remote => true %></td>
+		<% end %>
 	<% end %>
 	</table>
 	

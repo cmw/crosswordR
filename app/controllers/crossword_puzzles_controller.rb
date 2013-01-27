@@ -93,6 +93,7 @@ class CrosswordPuzzlesController < ApplicationController
 			format.html { redirect_to root_url, notice: 'Crossword puzzle successfully deleted.' }
       end
 			format.json { head :no_content }
+      format.js
     end
   end
 end
