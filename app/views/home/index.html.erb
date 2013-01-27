@@ -15,20 +15,14 @@
 						<h5>In the Works</h5>
 						<ul>
 						<% current_user.crossword_solutions.incomplete.order_recent.each do |sol| %>
-							<%= content_tag_for(:li, sol, :class => 'text-smaller') do %>
-								<%= link_to sol.crossword_puzzle.title, crossword_puzzle_path(sol.crossword_puzzle), :class=> "hoverLine"%> - <%= sol.completion_percentage %>%
-								<%= link_to 'delete', sol, :method => :delete, :remote => true, data: { confirm: 'Are you sure you want to delete your solution?' } %>
-							<% end %>
+							<%= render 'solution_item', :sol => sol %>
 						<% end %>
 					</ul>
 					<% end %>
 					<% if current_user.crossword_solutions.complete.exists? %>
 						<h5>Complete</h5>
 						<% current_user.crossword_solutions.complete.order_recent.each do |sol| %>
-							<%= div_for(sol, :class => 'text-smaller') do %>
-								<%= link_to sol.crossword_puzzle.title, crossword_puzzle_path(sol.crossword_puzzle), :class=> "hoverLine"%> - <%= sol.completion_percentage %>%
-								<%= link_to 'delete', sol, :method => :delete, :remote => true, data: { confirm: 'Are you sure you want to delete your solution?' } %>
-							<% end %>
+							<%= render 'solution_item', :sol => sol %>
 						<% end %>
 					<% end %>
 				<% else %>
