@@ -73,6 +73,7 @@ class CrosswordPuzzlesController < ApplicationController
       if @crossword_puzzle.update_attributes(params[:crossword_puzzle])
         format.html { redirect_to edit_crossword_puzzle_path(@crossword_puzzle), notice: 'Puzzle saved!' }
         format.json { head :no_content }
+        format.js
       else
         format.html { render action: "edit", notice: 'Error while saving.' }
         format.json { render json: @crossword_puzzle.errors, status: :unprocessable_entity }

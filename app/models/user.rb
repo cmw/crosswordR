@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 	
   attr_accessor :password
   before_save :encrypt_password
-  after_create :weclome_email
+  after_create :welcome_email
 
   MIN_PASSWORD_LENGTH = 5
   MAX_PASSWORD_LENGTH = 16

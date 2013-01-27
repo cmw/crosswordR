@@ -1,18 +1,15 @@
 CrosswordR::Application.routes.draw do
-  resources :crossword_solutions
-
 
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
-  resources :sessions
-  
-  resources :clues
-
   get "sign_up" => "users#new"
+
   resources :users
-
-
+  resources :words
+  resources :crossword_solutions
   resources :crossword_puzzles
+  resources :sessions
+  resources :clues
 
 
   get "home/index"

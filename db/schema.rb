@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130117214726) do
+ActiveRecord::Schema.define(:version => 20130126224001) do
 
   create_table "clues", :force => true do |t|
     t.integer   "crossword_puzzle_id"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(:version => 20130117214726) do
     t.string    "clue_text"
     t.timestamp "created_at",          :null => false
     t.timestamp "updated_at",          :null => false
+    t.string    "direction"
+    t.integer   "word_id"
   end
 
   create_table "crossword_puzzles", :force => true do |t|
@@ -34,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20130117214726) do
     t.integer   "clues_count",                               :default => 0
     t.integer   "crossword_solutions_count",                 :default => 0
     t.boolean   "published",                                 :default => false
+    t.text      "notes"
   end
 
   create_table "crossword_solutions", :force => true do |t|
@@ -58,6 +61,12 @@ ActiveRecord::Schema.define(:version => 20130117214726) do
     t.string    "password_hash"
     t.string    "password_salt"
     t.integer   "crossword_solutions_count", :default => 0
+  end
+
+  create_table "words", :force => true do |t|
+    t.string   "word"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
