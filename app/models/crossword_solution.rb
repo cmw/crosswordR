@@ -15,11 +15,11 @@ class CrosswordSolution < ActiveRecord::Base
 		true
 	end
 
- 	def completion_percentage
- 		sol_letters = self.solution_letters.gsub("_","").gsub(" ","")
- 		puz_letters = self.crossword_puzzle.letters.gsub("_","").gsub(" ","")
- 		return ((sol_letters.length.to_f)/(puz_letters.length.to_f)*100).round(1)
- 	end
+ 	#def completion_percentage
+ 	#	sol_letters = self.solution_letters.gsub("_","").gsub(" ","")
+ 	#	puz_letters = self.crossword_puzzle.letters.gsub("_","").gsub(" ","")
+ 	#	return ((sol_letters.length.to_f)/(puz_letters.length.to_f)*100).round(1)
+ 	#end
 
 	scope :complete, where(:solution_complete => true)
 	scope :incomplete, where(:solution_complete => false)

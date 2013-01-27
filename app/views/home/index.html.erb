@@ -13,23 +13,32 @@
 				<% if current_user.crossword_solutions.exists? %>
 					<% if current_user.crossword_solutions.incomplete.exists? %>
 						<h5>In the Works</h5>
-						<ul>
-						<% current_user.crossword_solutions.incomplete.order_recent.each do |sol| %>
-							<%= render 'solution_item', :sol => sol %>
-						<% end %>
-					</ul>
+						<ul class='solutionListHome list-circle'>
+							<% current_user.crossword_solutions.incomplete.order_recent.each do |sol| %>
+								<%= content_tag_for(:li, sol, :class => 'text-smaller') do %>
+									<%= link_to sol.crossword_puzzle.title, crossword_puzzle_path(sol.crossword_puzzle), :class=> "hoverLine"%>
+									<span class="solutionListHome right">
+										<%= link_to 'x', sol, :method => :delete, :remote => true, data: { confirm: 'Are you sure you want to delete your solution?' } %>
+									</span>
+								<% end %>
+							<% end %>
+						</ul>
 					<% end %>
 					<% if current_user.crossword_solutions.complete.exists? %>
 						<h5>Complete</h5>
-						<% current_user.crossword_solutions.complete.order_recent.each do |sol| %>
-							<%= render 'solution_item', :sol => sol %>
-						<% end %>
+						<ul  class='solutionListHome list-disc'>
+							<% current_user.crossword_solutions.complete.order_recent.each do |sol| %>
+								<%= content_tag_for(:li, sol, :class => 'text-smaller') do %>
+									<%= link_to sol.crossword_puzzle.title, crossword_puzzle_path(sol.crossword_puzzle), :class=> "hoverLine"%>
+								<% end %>
+							<% end %>
+						</ul>
 					<% end %>
 				<% else %>
 					<p class="text-center text-smaller">You haven't started any puzzles yet!</p>
-					<%= link_to "Random Puzzle", current_user.rand_unowned_puzzle, :class => "text-center block center hoverLine" %>
-					<%= link_to "Puzzle of the Day", CrosswordPuzzle.find(1), :class => "text-center block center hoverLine"  %>
 				<% end %>
+				<%= link_to "Random Puzzle", current_user.rand_unowned_puzzle, :class => "text-center block center hoverLine" %>
+				<%= link_to "Puzzle of the Day", CrosswordPuzzle.find(1), :class => "text-center block center hoverLine"  %>
 
 			<div class="bottomLeftMenuCorner menuCorner"></div>
 			<div class="bottomRightMenuCorner menuCorner"></div>
