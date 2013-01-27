@@ -3,7 +3,7 @@
 
 	<h1>Listing clues</h1>
 	
-	<table>
+	<table class="backed">
 		<tr>
 			<th>ID</th>
 			<th>Crossword puzzle</th>
@@ -17,17 +17,17 @@
 		</tr>
 	
 	<% @clues.each do |clue| %>
-		<tr>
+		<%= content_tag_for(:tr, clue) do %>
 			<td><%= clue.id %></td>
 			<td><%= clue.crossword_puzzle_id %></td>
 			<td><%= clue.user_id %></td>
 			<td><%= clue.cell %></td>
 			<td><%= clue.orientation %></td>
 			<td><%= clue.clue_text %></td>
-			<td><%= link_to 'Show', clue %></td>
-			<td><%= link_to 'Edit', edit_clue_path(clue) %></td>
-			<td><%= link_to 'Destroy', clue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-		</tr>
+			<td><%= link_to 'Show', clue, :class => 'hoverLine' %></td>
+			<td><%= link_to 'Edit', edit_clue_path(clue), :class => 'hoverLine' %></td>
+			<td><%= link_to 'Destroy', clue, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'hoverLine' %></td>
+		<% end %>
 	<% end %>
 	</table>
 	

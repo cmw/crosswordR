@@ -1,6 +1,6 @@
 <h1>Listing crossword_solutions</h1>
 
-<table>
+<table class="backed">
   <tr>
     <th>Crossword puzzle</th>
     <th>User</th>
@@ -12,15 +12,15 @@
   </tr>
 
 <% @crossword_solutions.each do |crossword_solution| %>
-  <tr>
+  <%= content_tag_for(:tr, crossword_solution) do %>
     <td><%= crossword_solution.crossword_puzzle_id %></td>
     <td><%= crossword_solution.user_id %></td>
     <td><%= crossword_solution.solution_letters %></td>
     <td><%= crossword_solution.solution_complete %></td>
-    <td><%= link_to 'Show', crossword_solution %></td>
-    <td><%= link_to 'Edit', edit_crossword_solution_path(crossword_solution) %></td>
-    <td><%= link_to 'Destroy', crossword_solution, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+    <td><%= link_to 'Show', crossword_solution, :class => 'hoverLine' %></td>
+    <td><%= link_to 'Edit', edit_crossword_solution_path(crossword_solution), :class => 'hoverLine' %></td>
+    <td><%= link_to 'Destroy', crossword_solution, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'hoverLine' %></td>
+  <% end %>
 <% end %>
 </table>
 
