@@ -1,15 +1,12 @@
 <% if @crossword_puzzle %>
 	<% title @crossword_puzzle.title %>
-	
+
 	<% if logged_in? && current_user == @crossword_puzzle.user %>
 		<div class="hangFlag">
 			This is your puzzle!<br />
 			<%= link_to "<b><u>Edit Puzzle</u></b>".html_safe, edit_crossword_puzzle_path(@crossword_puzzle) %>
 			<a href="#" class="closeBox closeUp">x</a>
 		</div>
-	<% end %>
-	<% if logged_in? %>
-		<% @crossword_solution = CrosswordSolution.find_or_create_by_user_id_and_crossword_puzzle_id(current_user.id, @crossword_puzzle.id) %>
 	<% end %>
 	<script type="text/javascript">
 			numRows = <%= @crossword_puzzle.rows %>;
@@ -18,7 +15,7 @@
 			var loadedVoids = [];
 			var letterVoidString = '<%= @crossword_puzzle.letters %>';
 			var solutionLetters = [];
-			
+
 			for(var i = 0; i< letterVoidString.length; i++){
 				if(letterVoidString[i] == '_'){
 					loadedVoids.push(i);
@@ -37,14 +34,14 @@
 			<% end %>
 
 			currentCrossword = new Crossword(loadedVoids, loadedLetters, []);
-	
-			
+
+
 			/*
 			Document load function that sets up the puzzle cells and prepares the dblclick
 			event listener to allow the users to change cells to and from void
 			*/
 			$(document).ready(function(){
-			
+
 				for (var i = 0; i< <%= @crossword_puzzle.rows %>; i++){
 					$("#cword").append(row);
 				}
@@ -54,7 +51,7 @@
 				//Initialize the cells, cellNumbers, and row x col tag
 				$cells = $('.cell');
 				$cellNums = $('.cellNum');
-				
+
 				//When the user hovers or focuses a cell, its clues are dynamically displayed and it is highlighted
 				$cells.on('mouseenter focusin',
 					function(){
@@ -63,12 +60,12 @@
 							$(this).parent().addClass('hoverCell');
 							if($('#dishStain').css('display')!='none' || $('#dishStain').css('opacity')>0){
 								$('#dishStain').stop();
-								$('#dishStain').fadeOut(400);	
+								$('#dishStain').fadeOut(400);
 							}
 						} else {
 							if($('#dishStain').css('display')=='none' || $('#dishStain').css('opacity')< 1){
 								$('#dishStain').stop();
-								$('#dish').fadeIn(1000);	
+								$('#dish').fadeIn(1000);
 							}
 						}
 						if (getClueLeft($(this))){
@@ -95,20 +92,20 @@
 								$('.curD').hide();
 							}
 						}
-					});					
+					});
 				$cells.on('focusout mouseleave',
 					function(){
 						$(this).parent().removeClass('hoverCell');
 					}
 				);
-				
+
 				//When a cell is focused, highlights the contents of the cell for easy changes
 				//Oddly written timeout because otherwise the keypress focuses don't properly highlight
 				$cells.on('focus', function(){
 					var save_this = $(this);
 					window.setTimeout (function(){save_this.select();},1);
 				});
-				
+
 				//Quick cell navigation key binds
 				$cells.on('keydown',function(event){
 					switch (event.which) {
@@ -127,28 +124,28 @@
 						case 40:
 							$cellBelow(this).select();
 							break;
-							
+
 					}
 					window.setTimeout (function(){updateHiddenLetters();},1);
 				});
-	
+
 				//Advanced tools toggle on pen-click
 				$('#advHeader, #advBracket, #pen').on('click',function(){
 					toggleAdvanced();
 				});
-				
+
 				inputVoids(currentCrossword.voids);
 				numberCells();
 				inputLetterArray(solutionLetters);
-				
+
 				<% @crossword_puzzle.clues.each do |clue| %>
 					$('.cell[cellnumber ='+ <%= clue.cell %> +']').attr('<%= orientation = clue.orientation ? "acrossclue" : "downclue" %>', "<%= clue.clue_text.html_safe %>");
-					
+
 				<% end %>
-				
+
 			});
 		</script>
-			
+
 			<div id='puzzleBox'>
 			<div id="topPuzzleBox">
 				<div id="leftControls" class="left">
@@ -189,43 +186,43 @@
 		<% if logged_in? && admin? %>
 			<div class="adminContainer">
 				<p id="notice"><%= notice %></p>
-				
+
 				<p>
 					<b>Title:</b>
 					<%= @crossword_puzzle.title %>
 				</p>
-				
+
 				<p>
 					<b>User:</b>
 					<%= @crossword_puzzle.user_id %>
 				</p>
-				
+
 				<p>
 					<b>Rows:</b>
 					<%= @crossword_puzzle.rows %>
 				</p>
-				
+
 				<p>
 					<b>Cols:</b>
 					<%= @crossword_puzzle.cols %>
 				</p>
-				
+
 				<p>
 					<b>Clue Count:</b>
 					<%= @crossword_puzzle.clues_count %>
 				</p>
-				
+
 				<p>
 					<b>Letters:</b>
 					<%= @crossword_puzzle.letters %>
 				</p>
-				
+
 				<%= link_to 'Edit', edit_crossword_puzzle_path(@crossword_puzzle) %> |
 				<%= link_to 'Back', crossword_puzzles_path %>
 				<a href="#" class="closeBox closeUp">x</a>
 			</div>
 		<% end %>
-		
+
 <% else %>
 	That puzzle doesn't exist...
 <% end %>

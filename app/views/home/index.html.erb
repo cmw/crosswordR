@@ -68,7 +68,7 @@
 								<% end %>
 							</div>
 						<% end %>
-						
+
 						<% if current_user.crossword_puzzles.published.exists? %>
 							<h5>Published</h5>
 							<div class="menuSection text-smaller">
@@ -145,6 +145,6 @@
 				<%= submit_tag "LOG IN" , :class => "chalkboardButton" %>
 		<% end %>
 			<span>or</span><br /><br /><br />
-			<%= link_to "SIGN UP".html_safe, sign_up_path, :class => "chalkboardButton" %>			
+			<%= link_to "SIGN UP".html_safe, sign_up_path, :class => "chalkboardButton" %>
 		</div>
 <% end %>

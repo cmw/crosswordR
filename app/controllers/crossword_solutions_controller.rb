@@ -1,9 +1,4 @@
 class CrosswordSolutionsController < ApplicationController
-  before_filter :get_crossword_solution, :only => [:show, :edit, :update, :destroy]
-
-  def get_crossword_solution
-    @crossword_solution = CrosswordSolution.find(params[:id])
-  end
 
   # GET /crossword_solutions
   # GET /crossword_solutions.json
@@ -19,6 +14,8 @@ class CrosswordSolutionsController < ApplicationController
   # GET /crossword_solutions/1
   # GET /crossword_solutions/1.json
   def show
+    @crossword_solution = CrosswordSolution.find(params[:id])
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @crossword_solution }
@@ -38,6 +35,8 @@ class CrosswordSolutionsController < ApplicationController
 
   # GET /crossword_solutions/1/edit
   def edit
+    @crossword_solution = CrosswordSolution.find(params[:id])
+
     unless current_user && ( (current_user == @crossword_solution.user) || current_user[:admin] )
       redirect_to root_url, :notice => "Sorry, you can't edit other people's solutions"
     end
@@ -70,6 +69,8 @@ class CrosswordSolutionsController < ApplicationController
   # PUT /crossword_solutions/1
   # PUT /crossword_solutions/1.json
   def update
+    @crossword_solution = CrosswordSolution.find(params[:id])
+
     respond_to do |format|
       if @crossword_solution.update_attributes(params[:crossword_solution])
         format.html { redirect_to crossword_puzzle_path(@crossword_solution.crossword_puzzle), notice: 'Solution saved!' }
@@ -81,9 +82,21 @@ class CrosswordSolutionsController < ApplicationController
     end
   end
 
+  def ajax_destroy
+    @crossword_solution = CrosswordSolution.find(params[:id])
+    @crossword_solution.destroy
+
+    respond_to do |format|
+      format.html { redirect_to crossword_solutions_url }
+      format.json { head :no_content }
+      format.js
+    end
+  end
+
   # DELETE /crossword_solutions/1
   # DELETE /crossword_solutions/1.json
   def destroy
+    @crossword_solution = CrosswordSolution.find(params[:id])
     @crossword_solution.destroy
 
     respond_to do |format|

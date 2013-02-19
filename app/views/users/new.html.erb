@@ -1,4 +1,4 @@
-<% if logged_in? %> 
+<% if logged_in? %>
 	<% if current_user.admin %>
 		<% title "New User" %>
 		<h1>New user</h1>
@@ -14,7 +14,7 @@
 	<% title "Sign Up" %>
 	<div id="signup-login-container" class="shadow">
 		<h1>Sign Up</h1>
-		
+
 		<%= form_for @user do |f| %>
 			<% if @user.errors.any? %>
 			<div class="error_messages">
@@ -40,7 +40,7 @@
 			</p>
 			<p>
 			<%= f.label :email %><br />
-			<%= f.text_field :email %>
+			<%= f.email_field :email %>
 			</p>
 			<p>
 			<%= f.label :password %><br />

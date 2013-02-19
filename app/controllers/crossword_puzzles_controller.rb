@@ -1,9 +1,4 @@
 class CrosswordPuzzlesController < ApplicationController
-  before_filter :get_crossword_puzzle, :only => [:show, :edit, :update, :destroy]
-
-  def get_crossword_puzzle
-    @crossword_puzzle = CrosswordPuzzle.find(params[:id])
-  end
 
   # GET /crossword_puzzles
   # GET /crossword_puzzles.json
@@ -19,6 +14,13 @@ class CrosswordPuzzlesController < ApplicationController
   # GET /crossword_puzzles/1
   # GET /crossword_puzzles/1.json
   def show
+    @crossword_puzzle = CrosswordPuzzle.find(params[:id])
+
+    #Creates a solution for the puzzle by the user
+    unless (current_user.nil? || @crossword_puzzle.nil?)
+      @crossword_solution = CrosswordSolution.find_or_create_by_user_id_and_crossword_puzzle_id(current_user.id, @crossword_puzzle.id)
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @crossword_puzzle }
@@ -38,6 +40,8 @@ class CrosswordPuzzlesController < ApplicationController
 
   # GET /crossword_puzzles/1/edit
   def edit
+    @crossword_puzzle = CrosswordPuzzle.find(params[:id])
+
     unless current_user && ( (current_user == @crossword_puzzle.user) || current_user[:admin] )
       redirect_to root_url, :notice => "Sorry, you can't edit other people's puzzles"
     end
@@ -69,6 +73,8 @@ class CrosswordPuzzlesController < ApplicationController
   # PUT /crossword_puzzles/1
   # PUT /crossword_puzzles/1.json
   def update
+    @crossword_puzzle = CrosswordPuzzle.find(params[:id])
+
     respond_to do |format|
       if @crossword_puzzle.update_attributes(params[:crossword_puzzle])
         format.html { redirect_to edit_crossword_puzzle_path(@crossword_puzzle), notice: 'Puzzle saved!' }
@@ -84,12 +90,13 @@ class CrosswordPuzzlesController < ApplicationController
   # DELETE /crossword_puzzles/1
   # DELETE /crossword_puzzles/1.json
   def destroy
+    @crossword_puzzle = CrosswordPuzzle.find(params[:id])
     @crossword_puzzle.destroy
 
     respond_to do |format|
     	if current_user.admin
       format.html { redirect_to crossword_puzzles_url, notice: 'Puzzle successfully deleted.' }
-      else 
+      else
 			format.html { redirect_to root_url, notice: 'Crossword puzzle successfully deleted.' }
       end
 			format.json { head :no_content }

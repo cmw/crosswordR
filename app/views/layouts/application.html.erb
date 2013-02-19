@@ -1,100 +1,100 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title><%= title %></title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-	<%= javascript_include_tag :application %>
-  <%= javascript_include_tag "http://code.jquery.com/ui/1.9.2/jquery-ui.js" %>
-  <%= csrf_meta_tags %>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="keywords" content="<%= meta_keywords %>" />
-	<meta name="description" content="<%= meta_description %>" />
-</head>
-<body>
-	<div id="crossHeader" class="shadow">
-		<div id="crossHeaderContainer" >
-			<!-- <img src="http://i.imgur.com/ZQegw.jpg" />
-			<img src="http://i.imgur.com/n2q3D.jpg" />
-			<img src="http://i.imgur.com/ZY0G7.jpg" />
-			<img src="http://i.imgur.com/XIdcI.jpg" />-->
-			
-			<%= link_to image_tag("/assets/headerIcon.png", :height => "85%", :alt => "Crossword Café | Home"), root_url %>
-			<div id="headQuote" alt='"A writer is someone who can make a riddle out of and answer"'></div>
-			<nav class="right headerNav">
-				<% if logged_in? %>
-				<span class="headerSpacer right"></span>
-				<div class ="menuTab">
-					<% if current_user.first_name || current_user.last_name %>
-						<%= current_user.first_name if current_user.first_name %> <%= current_user.last_name if current_user.last_name %>
-					<% else %>
-						<%= current_user.username %>
-					<% end %>
-					
-					<div class="downNav"></div>
-						<ul class="dropMenu">
-					
-							<% if admin? %>
-							<li> Admin
-									<div class="leftNav"></div>
-									<ul class="leftMenu">
-											<%= link_to "<li>All Users</li>".html_safe, users_path %>
-											<%= link_to "<li>All Puzzles</li>".html_safe, crossword_puzzles_path %>
-											<%= link_to "<li>All Solutions</li>".html_safe, crossword_solutions_path %>
-											<%= link_to "<li>All Clues</li>".html_safe, clues_path %>
-									</ul>
-							</li>
-							<% end %>
-						<%= link_to "<li>View Profile</li>".html_safe, current_user %>
-						<%= link_to "<li>Edit Profile</li>".html_safe, edit_user_path(current_user) %>
-						<%= link_to "<li>Log Out</li>".html_safe, log_out_path %>
-					<ul>
-				</div>
-				<% else %>
-					<div class ="menuTab promote">
-						<%= link_to "Sign Up!".html_safe, sign_up_path %>
-					</div>
+<!doctype html>
+<html lang = 'en'>
+	<head>
+	  <title><%= title %></title>
+	  <%= stylesheet_link_tag    "application", :media => "all" %>
+	  <%= javascript_include_tag "application" %>
+		<%= javascript_include_tag :application %>
+	  <%= javascript_include_tag "http://code.jquery.com/ui/1.9.2/jquery-ui.js" %>
+	  <%= csrf_meta_tags %>
+	  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	  <meta name="keywords" content="<%= meta_keywords %>" />
+		<meta name="description" content="<%= meta_description %>" />
+	</head>
+	<body>
+		<header id="crossHeader" class="shadow">
+			<div id="crossHeaderContainer" >
+				<!-- <img src="http://i.imgur.com/ZQegw.jpg" />
+				<img src="http://i.imgur.com/n2q3D.jpg" />
+				<img src="http://i.imgur.com/ZY0G7.jpg" />
+				<img src="http://i.imgur.com/XIdcI.jpg" />-->
+
+				<%= link_to image_tag("/assets/headerIcon.png", :height => "85%", :alt => "Crossword Café | Home"), root_url %>
+				<div id="headQuote" alt='"A writer is someone who can make a riddle out of and answer"'></div>
+				<nav class="right headerNav">
+					<% if logged_in? %>
 					<span class="headerSpacer right"></span>
 					<div class ="menuTab">
-						<%= link_to "Log In".html_safe, log_in_path %>
-					</div>
-				<% end %>
-				
-				<span class="headerSpacer right"></span>
-				<div class="menuTab">
-					Load Puzzle
-					<div class="downNav"></div>
-					<ul class="dropMenu">
-					
-						<% User.order(:last_name).each do |user| %>
-							<% if user.has_published %>
-							<li><%= user.last_name %>
-								<div class="leftNav"></div>
-								<ul class="leftMenu">
-								
-									<% user.crossword_puzzles.published.each do |a_puzzle| %>
-											<% puzzle_list_item = '<li>'+a_puzzle.title.split(" ")[0][0,13]+'</li>' %>
-											<%= link_to puzzle_list_item.html_safe, a_puzzle %>
-									<% end %>
-			
-								</ul>
-							</li>
-							<% end %>
+						<% if current_user.first_name || current_user.last_name %>
+							<%= current_user.first_name if current_user.first_name %> <%= current_user.last_name if current_user.last_name %>
+						<% else %>
+							<%= current_user.username %>
 						<% end %>
-						
-					</ul>
-					
-				</div>
-				<span class="headerSpacer right"></span>
-					<%= link_to '<div>New Puzzle</div>'.html_safe, new_crossword_puzzle_path %>
-				<span class="headerSpacer right"></span>
-			</nav>
-		</div>
-	</div>
-	<% if flash[:notice] %>
-		<p class="flash-notice shadow top-notice"><%= flash[:notice] %></p>
-	<% end %>
-<%= yield %>
 
-</body>
+						<div class="downNav"></div>
+							<ul class="dropMenu">
+
+								<% if admin? %>
+								<li> Admin
+										<div class="leftNav"></div>
+										<ul class="leftMenu">
+												<%= link_to "<li>All Users</li>".html_safe, users_path %>
+												<%= link_to "<li>All Puzzles</li>".html_safe, crossword_puzzles_path %>
+												<%= link_to "<li>All Solutions</li>".html_safe, crossword_solutions_path %>
+												<%= link_to "<li>All Clues</li>".html_safe, clues_path %>
+										</ul>
+								</li>
+								<% end %>
+							<%= link_to "<li>View Profile</li>".html_safe, current_user %>
+							<%= link_to "<li>Edit Profile</li>".html_safe, edit_user_path(current_user) %>
+							<%= link_to "<li>Log Out</li>".html_safe, log_out_path %>
+						<ul>
+					</div>
+					<% else %>
+						<div class ="menuTab promote">
+							<%= link_to "Sign Up!".html_safe, sign_up_path %>
+						</div>
+						<span class="headerSpacer right"></span>
+						<div class ="menuTab">
+							<%= link_to "Log In".html_safe, log_in_path %>
+						</div>
+					<% end %>
+
+					<span class="headerSpacer right"></span>
+					<div class="menuTab">
+						Load Puzzle
+						<div class="downNav"></div>
+						<ul class="dropMenu">
+
+							<% User.order(:last_name).each do |user| %>
+								<% if user.has_published %>
+								<li><%= user.last_name %>
+									<div class="leftNav"></div>
+									<ul class="leftMenu">
+
+										<% user.crossword_puzzles.published.each do |a_puzzle| %>
+												<% puzzle_list_item = '<li>'+a_puzzle.title.split(" ")[0][0,13]+'</li>' %>
+												<%= link_to puzzle_list_item.html_safe, a_puzzle %>
+										<% end %>
+
+									</ul>
+								</li>
+								<% end %>
+							<% end %>
+
+						</ul>
+
+					</div>
+					<span class="headerSpacer right"></span>
+						<%= link_to '<div>New Puzzle</div>'.html_safe, new_crossword_puzzle_path %>
+					<span class="headerSpacer right"></span>
+				</nav>
+			</div>
+		</header>
+		<% if flash[:notice] %>
+			<p class="flash-notice shadow top-notice"><%= flash[:notice] %></p>
+		<% end %>
+	<%= yield %>
+
+	</body>
 </html>
